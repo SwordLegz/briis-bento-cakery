@@ -8,7 +8,7 @@ function UserPage() {
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
+      <p>The six cake flavor cards shall go here! First, I shall nap.</p>
       <LogOutButton className="btn" />
     </div>
   );
