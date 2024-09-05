@@ -14,6 +14,20 @@ img {
   max-width: 100%;
 }
 
+.header {
+  display: flex;
+  margin: 0 0 30px;
+  background-color: #00acb0;
+  overflow: hidden;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 24px;
+  font-weight: 700;
+  color: #f2f2f2;
+  padding-left: 10px;
+  margin: 0;
+}
+
 /* --------------------------------------------------------------------------------
 Container
 -------------------------------------------------------------------------------- */

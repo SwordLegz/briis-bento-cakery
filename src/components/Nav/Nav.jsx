@@ -9,9 +9,9 @@ function Nav() {
 
   return (
     <div className="nav">
-      <Link to="/home">
+      {/* <Link to="/home">
         <h2 className="nav-title">Brii's Bento Cakery</h2>
-      </Link>
+      </Link> */}
   
       <Link className="navLink" to="/home">
               Home
