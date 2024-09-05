@@ -16,6 +16,9 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 import AboutPage from '../AboutPage/AboutPage';
+import Events from '../Events/Events';
+import Contact from '../Contact/Contact';
+import ShopCakeBites from '../ShopCakeBites/ShopCakeBites';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
@@ -43,12 +46,29 @@ function App() {
           <Redirect exact from="/" to="/home" />
 
           {/* Visiting localhost:5173/about will show the about page. */}
+          
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
             path="/about"
           >
             <AboutPage />
+          </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/events"
+          >
+            <Events />
+          </Route>
+
+          <Route
+            // shows AboutPage at all times (logged in or not)
+            exact
+            path="/contact"
+          >
+            <Contact />
           </Route>
 
           {/* For protected routes, the view could show one of several things on the same route.
@@ -66,9 +86,9 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/info"
+            path="/contact"
           >
-            <InfoPage />
+            <Contact />
           </ProtectedRoute>
 
           <Route
@@ -115,7 +135,7 @@ function App() {
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
-            <h1>404</h1>
+            {/* <ShopCakeBites /> */}
           </Route>
         </Switch>
         <Footer />

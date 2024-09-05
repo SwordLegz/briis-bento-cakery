@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 
-function CakeBiteItem({getFlavor, flavor}) {
+function ShopCakeBites({getFlavor, flavor}) {
     const [buttonDecision, setButtonDecision] = useState(true)
     const dispatch = useDispatch();
 
@@ -50,4 +50,4 @@ function CakeBiteItem({getFlavor, flavor}) {
         )
 }
 
-export default CakeBiteItem;
+export default ShopCakeBites;
