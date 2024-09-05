@@ -36,6 +36,7 @@ function LoginForm() {
         <label htmlFor="username">
           Username:
           <input
+            placeholder="Email"
             type="text"
             name="username"
             required
@@ -48,6 +49,7 @@ function LoginForm() {
         <label htmlFor="password">
           Password:
           <input
+            placeholder="Password"
             type="password"
             name="password"
             required
