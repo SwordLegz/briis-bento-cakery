@@ -1,11 +1,5 @@
 const express = require('express');
-const {
-  rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
-const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
-const userStrategy = require('../strategies/user.strategy');
-
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -15,6 +9,7 @@ router.get('/', (req, res) => {
         res.send(result.rows);
     }).catch((error) => {
         console.log('YO ERROR GET /api/flavors', error)
+        res.sendStatus(500);
     });
 })
 
