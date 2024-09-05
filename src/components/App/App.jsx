@@ -19,8 +19,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import Events from '../Events/Events';
 import Contact from '../Contact/Contact';
 import ShopCakeBites from '../ShopCakeBites/ShopCakeBites';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
+import Home from '../Home/Home';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -47,27 +46,27 @@ function App() {
 
           {/* Visiting localhost:5173/about will show the about page. */}
           
+          <Route exact path="/shop">
+            <ShopCakeBites />
+          </Route>
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/about"
-          >
+            path="/about">
             <AboutPage />
           </Route>
 
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/events"
-          >
+            path="/events">
             <Events />
           </Route>
 
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
-            path="/contact"
-          >
+            path="/contact">
             <Contact />
           </Route>
 
@@ -78,23 +77,20 @@ function App() {
           <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
-            path="/home"
-          >
-            <UserPage />
+            path="/home">
+            <Home />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/contact"
-          >
+            path="/contact">
             <Contact />
           </ProtectedRoute>
 
           <Route
             exact
-            path="/login"
-          >
+            path="/login">
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /home page
@@ -107,8 +103,7 @@ function App() {
 
           <Route
             exact
-            path="/registration"
-          >
+            path="/registration">
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /home page
@@ -121,8 +116,7 @@ function App() {
 
           <Route
             exact
-            path="/home"
-          >
+            path="/home">
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /home page
@@ -134,9 +128,6 @@ function App() {
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
-          <Route>
-            {/* <ShopCakeBites /> */}
-          </Route>
         </Switch>
         <Footer />
       </div>

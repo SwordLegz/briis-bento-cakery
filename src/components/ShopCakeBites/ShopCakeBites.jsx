@@ -42,9 +42,10 @@ function ShopCakeBites({getFlavor, flavor}) {
 
         return (
             <div id="cakebite-item">
-                <img id="cakebite-img" src={flavor.image} />
-                <h3>{flavor.name}</h3>
-                <p className="flavor-desc">{flavor.description}</p>
+                {/* <img id="cakebite-img" src={flavor.image} /> */}
+                {/* <h3>{flavor.name}</h3> */}
+                <h2>Wuh wuh</h2>
+                {/* <p className="flavor-desc">{flavor.description}</p> */}
                 {buttonDecision ? <button onClick={addToCart}>Add to Cart</button> : <button onClick={removeFromCart}>Remove from Cart</button>}
             </div>
         )

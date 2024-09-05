@@ -107,3 +107,7 @@
 // sagaMiddleware.run(rootSaga);
 
 // export default store;
+
+<Route exact path="/shop">
+            <ShopCakeBites />
+          </Route>
