@@ -19,22 +19,26 @@ router.post('/', async (req, res) => {
 
     try {
         const {
-            user_first_name,
-            user_last_name,
-            email,
-            total,
-            cakebites
-        } = req.body;
+            user_id,
+            date,
+            flavor_id,
+            is_egg_free,
+            is_dairy_free,
+            is_gluten_free,
+            is_vegan,
+            quantity
+         } = req.body;
         await client.query('BEGIN')
-        const orderInsertResults = await client.query(``)
+        const orderInsertResults = await client.query(`INSERT INTO "orders" ("user_id", "date")
+            VALUES ($1, $2)
+            RETURNING id;`, [user_id, date])
 
         const orderId = orderInsertResults.rows[0].id;
 
-        await Promise.all(flavors.map(flavor => {
-            const insertLineItemText = ``;
-            const insertLineItemValue = [];
-            return client.query(insertLineItemText, insertLineItemValue);
-        }));
+        const insertLineItemText = `INSERT INTO "order_items" ("order_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
+        VALUES ($1, $2, $3, $4, $5, $6, $7);`;
+        const insertLineItemValue = [orderId, flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity];
+        await client.query(insertLineItemText, insertLineItemValue);
 
         await client.query('COMMIT')
         res.sendStatus(201);
@@ -42,6 +46,8 @@ router.post('/', async (req, res) => {
         await client.query('ROLLBACK')
         console.log('ERROR POST /api/order in order router', error);
         res.sendStatus(500)
+    } finally {
+        client.release()
     }
 });
 

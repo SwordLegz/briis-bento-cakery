@@ -19,18 +19,18 @@ CREATE TABLE "user" (
 
 INSERT INTO "user"
 	("username", "password", "first_name", "last_name")
-	VALUES ('user1@user.com', 'user1', 'User', '1'),
-	('test@test.com', 'test1', 'Test', '1')
+	VALUES ('brii@brii.com', '$2a$10$7hbcyq8pB56jjoy1cmqIZusPIst4LGjRtMmyGiojDQKBKSeQKtgLC', 'Brii', 'SwordLegz'),
+	('test@test.com', '$2a$10$TnJGmKV8zTHITxsJEBjVu./ZbqGUKVFpLJXgeJaGTV0C2ajHa2oLe', 'Sir', 'Test')
 ;
 
-CREATE TABLE "flavors" (
+CREATE TABLE "cakebites" (
 	"id" SERIAL PRIMARY KEY,
 	"flavor" VARCHAR (80) NOT NULL,
 	"image" VARCHAR(1000) NOT NULL,
 	"description" VARCHAR (2000) NOT NULL
 );
 
-INSERT INTO "flavors" 
+INSERT INTO "cakebites" 
 	("flavor", "image", "description")
 	VALUES ('Biscoff', '/images/biscoff.jpg', 'blah bleep bloop'),
 	('PBJ', '/images/pbj.jpg', 'blah bleep bloop'), 
@@ -59,7 +59,7 @@ INSERT INTO "orders"
 CREATE TABLE "order_items" (
 	"id" SERIAL PRIMARY KEY,
 	"order_id" INTEGER REFERENCES "orders" ON DELETE CASCADE,
-	"flavor_id" INTEGER REFERENCES "flavors" ON DELETE CASCADE,
+	"flavor_id" INTEGER REFERENCES "cakebites" ON DELETE CASCADE,
 	"is_egg_free" BOOLEAN NOT NULL,
 	"is_dairy_free" BOOLEAN NOT NULL,
 	"is_gluten_free" BOOLEAN NOT NULL,
@@ -82,6 +82,11 @@ INSERT INTO "order_items"
 	('3', '6', 'TRUE', 'TRUE', 'TRUE', 'TRUE', '25'),
 	('4', '4', 'FALSE', 'FALSE', 'FALSE', 'FALSE','50'),
 	('4', '5', 'FALSE', 'TRUE', 'FALSE', 'FALSE', '25');
+
+
+
+
+		
 
 
 

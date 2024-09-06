@@ -10,8 +10,8 @@ function Cart() {
     const dispatch = useDispatch();
 
     const handleCart = () => {
-        let allCakeBites = cart.map((flavors) => (
-            {id: flavors.id, flavor: flavor}
+        let allCakeBites = cart.map((cakebites) => (
+            {id: cakebites.id, flavor: flavor}
         ))
         const postData = {
             user_first_name: customerInfo.first_name,
