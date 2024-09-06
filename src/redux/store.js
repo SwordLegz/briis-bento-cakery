@@ -15,38 +15,57 @@ const middlewareList = process.env.NODE_ENV === 'development' ?
   [sagaMiddleware, logger] :
   [sagaMiddleware];
 
-  // ------------ CAKE BITE CART  ------------ //
-  const cart = (state =[], action) => {
-    if (action.type === 'ADD_TO_CART') {
-      let newCart = [...state, aciton.payload]
-      return newCart;
-    } else if (action.type === 'REMOVE_FROM_CART') {
-      let newCart = state.filter((el) => {
-        return el.id !== action.payload
-      })
-      return newCart;
+// ------------ CAKE BITE ITEM  ------------ //
+const currentCakeBite = (state = {}, action) => {
+  console.log('HI! currentCakeBite reducerrrr:', action)
+  if (action.type === 'SET_CAKEBITES') {
+    const flavors = []
+    for (let result of action.payload) {
+      flavors.push(result.flavor)
     }
-    else if (action.type === 'EMPTY_CART') {
-      let cartTotal = action.payload;
-      return cartTotal;
+    let cakeBiteObject = {
+      cakebiteId: action.payload[0].id,
+      cakebiteFlavor: action.payload[0].flavor,
+      image: action.payload[0].image,
+      description: action.payload[0].description
     }
-    return state;
+    return cakeBiteObject
   }
+  return state;
+}
+
+  // ------------ CAKE BITE CART  ------------ //
+  // const cart = (state =[], action) => {
+  //   if (action.type === 'ADD_TO_CART') {
+  //     let newCart = [...state, aciton.payload]
+  //     return newCart;
+  //   } else if (action.type === 'REMOVE_FROM_CART') {
+  //     let newCart = state.filter((el) => {
+  //       return el.id !== action.payload
+  //     })
+  //     return newCart;
+  //   }
+  //   else if (action.type === 'EMPTY_CART') {
+  //     let cartTotal = action.payload;
+  //     return cartTotal;
+  //   }
+  //   return state;
+  // }
 
   // ------------ CART TOTAL  ------------ //
-  const cartTotal = (state = 0, action) => {
-    if (action.type === 'ADD_CART_TOTAL') {
-      let cartTotal = math.round((state + Number(action.payload)) * 100) / 100;
-      return cartTotal;
-    } else if (action.type === 'REMOVE_CART_TOTAL') {
-      let cartTotal = math.round((state - Number(action.payload)) * 100) / 100;
-      return cartTotal;
-    } else if (action.type === 'CLEAR_CART_TOTAL') {
-      let cartTotal = action.payload;
-      return cartTotal;
-    }
-    return state;
-  }
+  // const cartTotal = (state = 0, action) => {
+  //   if (action.type === 'ADD_CART_TOTAL') {
+  //     let cartTotal = math.round((state + Number(action.payload)) * 100) / 100;
+  //     return cartTotal;
+  //   } else if (action.type === 'REMOVE_CART_TOTAL') {
+  //     let cartTotal = math.round((state - Number(action.payload)) * 100) / 100;
+  //     return cartTotal;
+  //   } else if (action.type === 'CLEAR_CART_TOTAL') {
+  //     let cartTotal = action.payload;
+  //     return cartTotal;
+  //   }
+  //   return state;
+  // }
 
   // ------------ CUSTOMER INFO  ------------ //
   const customerInfo = (state = [], action) => {

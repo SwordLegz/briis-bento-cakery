@@ -1,52 +1,43 @@
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useState } from "react";
+
+// 1. When this component loads, call a Saga function that will
+//    get the data from the cakebites table.
+// 2. The Saga function that does this, will then store the
+//    cakebites data in a reducer.
+// 3. In this component, need to obtain the cakebites data from
+//    the reducer.
+// 4. Down in this component's return, need to map through the
+//    array of cakebites objects (the data we got out of redux).
+
 
 function ShopCakeBites({getFlavor, flavor}) {
-    const [buttonDecision, setButtonDecision] = useState(true)
-    const dispatch = useDispatch();
+        const dispatch = useDispatch()
 
-    let cart = useSelector(store => store.cart)
-    let buttonAction = true;
-    let decidedButton;
+        useEffect(() => {
+            // Yell at a Saga fuction here!
+            // AKA: Step 1.
+            dispatch({type: 'FETCH_CAKEBITES'})
+        }, [])
 
-        const addToCart = () => {
-            let cartTotalToAdd = flavor.name;
-            let cakeBiteToAdd = {id: flavor.id, flavor: flavor.flavor, quantity: 1}
-            
-            dispatchEvent({
-                type: 'ADD_TO_CART',
-                payload: cakeBiteToAdd
-            })
-            dispatchEvent({
-                type: 'ADD_TO_CART',
-                payload: cakeBiteToAdd
-            })
-            setButtonDecision(false);
-        }
-
-        const removeFromCart = () => {
-            let cakeBiteToRemove = flavor.id
-            let cartTotalToRemove = flavor.name
-            
-            dispatch({
-                type: 'REMOVE_FROM_CART',
-                payload: cakeBiteToRemove
-            })
-
-            dispatch({
-                type: 'REMOVE_CART_TOTAL',
-                payload: cartTotalToRemove
-            })
-            setButtonDecision(true);
-        }
+        const cakeBites = useSelector(store => store.shopReducer)
+        // AKA: Step 3.
 
         return (
-            <div id="cakebite-item">
-                <img id="cakebite-img" src={flavor.image} />
-                <h3>{flavor.name}</h3>
-                <h2>Wuh wuh</h2>
-                <p className="flavor-desc">{flavor.description}</p>
-                {buttonDecision ? <button onClick={addToCart}>Add to Cart</button> : <button onClick={removeFromCart}>Remove from Cart</button>}
+            <div>
+                <h2>Some Cakebites!</h2>
+
+                {/* Step 4: Something like: */}
+
+                   { cakeBites.map((oneCakeBiteObject) => {
+                        return (
+                            <>
+                            <li>{oneCakeBiteObject.flavor}</li>
+                            <img src="/images/biscoff.jpg" alt="" />
+                            </>
+                        )
+                    })}
+
             </div>
         )
 }

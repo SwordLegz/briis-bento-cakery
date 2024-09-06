@@ -3,12 +3,12 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    console.log('HIYA GET /api/cakebite');
+    console.log('HIYA GET /api/shop');
     pool.query('SELECT * from "cakebites";')
     .then((result) => {
         res.send(result.rows);
     }).catch((error) => {
-        console.log('YO ERROR GET /api/cakebites', error)
+        console.log('YO ERROR GET /api/shop', error)
         res.sendStatus(500);
     });
 })

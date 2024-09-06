@@ -9,6 +9,8 @@ const passport = require('./strategies/user.strategy');
 
 // --------- Route Includes --------- //
 const userRouter = require('./routes/user.router');
+const shopRouter = require('./routes/shop.router.js');
+// const orderRouter = require('/routes/order.router.js');
 
 // --------- Express Middleware --------- //
 app.use(express.json());
@@ -24,10 +26,8 @@ app.use(passport.session());
 
 // --------- ROUTES --------- //
 app.use('/api/user', userRouter);
-
-const cakeBiteRouter = require('./routes/cakebite.router.js');
-app.use('/api/cakebite', cakeBiteRouter);
-
+app.use('/api/shop', shopRouter);
+// app.use('/api/order', orderRouter);
 
 
 // --------- START Server & Port --------- //

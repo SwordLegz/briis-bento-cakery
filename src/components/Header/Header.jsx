@@ -3,8 +3,13 @@ import './Header.css';
 
 function Header() {
     return (
-    <div>
-        <header className="header">Brii's Bento Cakery</header>
+        <div>
+            <div>
+                <header className="header">Brii's Bento Cakery
+                    <button className="btn">Cart</button>
+                </header>
+            </div>
+            
     </div>
     )
   }

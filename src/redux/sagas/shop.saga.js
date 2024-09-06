@@ -3,12 +3,7 @@ import { put, takeLatest } from 'redux-saga/effects';
 
 function* fetchCakeBites() {
     try {
-        const config = {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-          };
-
-        const cakeBites = yield axios.get('/api/shop', config)
+        const cakeBites = yield axios.get('/api/shop')
         yield put({
             type: 'SET_CAKEBITES',
             payload: cakeBites.data
