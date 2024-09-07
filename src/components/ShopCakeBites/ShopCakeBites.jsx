@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 // 1. When this component loads, call a Saga function that will
 //    get the data from the cakebites table.
 // 2. The Saga function that does this, will then store the
@@ -23,21 +24,33 @@ function ShopCakeBites({getFlavor, flavor}) {
         const cakeBites = useSelector(store => store.shopReducer)
         // AKA: Step 3.
 
+        const handleClickedImg = (id) => {
+            console.log('CAKEBITE ID is:', id);
+            dispatch({
+                type: 'GET_CAKEBITE',
+                payload: id
+            })
+            history.pushState('/shop/${id}');
+        }
+
         return (
             <div>
                 <h2>Some Cakebites!</h2>
-
+                <section className="cakebites">
                 {/* Step 4: Something like: */}
 
-                   { cakeBites.map((oneCakeBiteObject) => {
+                   {cakeBites.map((oneCakeBiteObject) => {
                         return (
-                            <>
-                            <li>{oneCakeBiteObject.flavor}</li>
-                            <img src="/images/biscoff.jpg" alt="" />
-                            </>
+                            <div key={oneCakeBiteObject.id}>
+                                <h3>{oneCakeBiteObject.flavor}</h3>
+                                <img onClick={() => {handleClickedImg(oneCakeBiteObject.id)}}
+                                     src={oneCakeBiteObject.image}
+                                     alt={oneCakeBiteObject.flavor}/>
+
+                            </div>
                         )
                     })}
-
+                </section>
             </div>
         )
 }
