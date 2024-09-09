@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react';
-import {
-  HashRouter as Router,
-  Redirect,
-  Route,
-  Switch,
-} from 'react-router-dom';
+import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 
 import Nav from '../Nav/Nav';
 import Header from '../Header/Header';
@@ -23,21 +19,25 @@ import Home from '../Home/Home';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+// import Modal from '../Modal/Modal';
 
 import './App.css';
 
+
 function App() {
   const dispatch = useDispatch();
-
   const user = useSelector(store => store.user);
+  // const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
   return (
+    
     <Router>
       <div>
+        
         <Header />
         <Nav />
         <Switch>
@@ -69,6 +69,7 @@ function App() {
             path="/contact">
             <Contact />
           </Route>
+        
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:5173/home will show the UserPage if the user is logged in.

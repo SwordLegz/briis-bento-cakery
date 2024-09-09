@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "../Modal/Modal";
+import CakeBiteItem from '../CakeBiteItem/CakeBiteItem';
+
 
 
 // 1. When this component loads, call a Saga function that will
@@ -11,6 +14,14 @@ import { useDispatch, useSelector } from "react-redux";
 // 4. Down in this component's return, need to map through the
 //    array of cakebites objects (the data we got out of redux).
 
+// const useStyles = makeStyles({
+//     root: {
+//         maxWidth: 345,
+//     },
+//     media: {
+//         height: 140
+//     }
+// });
 
 function ShopCakeBites({getFlavor, flavor}) {
         const dispatch = useDispatch()
@@ -23,6 +34,11 @@ function ShopCakeBites({getFlavor, flavor}) {
 
         const cakeBites = useSelector(store => store.shopReducer)
         // AKA: Step 3.
+        // const cardButtonClick = (event) => {
+        //     console.log('MORE INFO NOOB', event);
+        // }
+
+        // const classes = useStyles();
 
         const handleClickedImg = (id) => {
             console.log('CAKEBITE ID is:', id);
@@ -30,22 +46,22 @@ function ShopCakeBites({getFlavor, flavor}) {
                 type: 'GET_CAKEBITE',
                 payload: id
             })
-            history.pushState('/shop/${id}');
+            // history.push('/shop/${id}');
         }
 
         return (
             <div>
-                <h2>Some Cakebites!</h2>
+                <h2>Shop Cakebites!</h2>
                 <section className="cakebites">
                 {/* Step 4: Something like: */}
 
-                   {cakeBites.map((oneCakeBiteObject) => {
+                   {cakeBites.map((singleCakeBite) => {
                         return (
-                            <div key={oneCakeBiteObject.id}>
-                                <h3>{oneCakeBiteObject.flavor}</h3>
-                                <img onClick={() => {handleClickedImg(oneCakeBiteObject.id)}}
-                                     src={oneCakeBiteObject.image}
-                                     alt={oneCakeBiteObject.flavor}/>
+                            <div key={singleCakeBite.id}>
+                                <h3>{singleCakeBite.flavor}</h3>
+                                <img onClick={() => {handleClickedImg(singleCakeBite.id)}}
+                                     src={singleCakeBite.image}
+                                     alt={singleCakeBite.flavor}/>
 
                             </div>
                         )
