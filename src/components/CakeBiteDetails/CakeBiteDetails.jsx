@@ -36,7 +36,7 @@ const CakeBiteDetails = () => {
     // const [isOpen, setIsOpen] = useState('');
 
     const backToShop = () => {
-        history.push('/');
+        history.push('/shop');
         dispatch({
             type: 'BACK_TO_SHOP',
             payload: {}
