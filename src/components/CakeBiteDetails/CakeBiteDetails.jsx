@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
+import './CakeBiteDetails.css';
 // import Modal from "../Modal/Modal";
 // import CakeBiteDetails from "../CakeBitedetails/CakeBiteDetails";
 // import './App.css';
@@ -52,7 +53,7 @@ const CakeBiteDetails = () => {
         <div>
             <figure>
             <h1>{cakeBiteItem.flavor}</h1>
-            <img src={cakeBiteItem.image ? cakeBiteItem.image : ""} />
+            <img className="cakebiteImage" src={cakeBiteItem.image ? cakeBiteItem.image : ""} />
             <h3>Description:</h3>
             <p>{cakeBiteItem.description}</p>
             </figure>

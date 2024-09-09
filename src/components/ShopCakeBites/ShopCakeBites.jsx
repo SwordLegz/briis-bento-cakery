@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "../Modal/Modal";
 import CakeBiteDetails from "../CakeBiteDetails/CakeBiteDetails";
+import './ShopCakeBites.css';
 
 
 // 1. When this component loads, call a Saga function that will
@@ -60,7 +61,7 @@ function ShopCakeBites({getFlavor, flavor}) {
                         return (
                             <div key={singleCakeBite.id}>
                                 <h3>{singleCakeBite.flavor}</h3>
-                                <img onClick={() => {handleClickedImg(singleCakeBite.id)}}
+                                <img className="cakebiteImage" onClick={() => {handleClickedImg(singleCakeBite.id)}}
                                      src={singleCakeBite.image}
                                      alt={singleCakeBite.flavor}/>
 
