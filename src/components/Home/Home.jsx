@@ -11,12 +11,10 @@ function Home() {
   return (
     <div className="container">
       <h2>Hello there, sweet {user.first_name}!</h2>
-      <p>
-        The six cake flavor cards shall go here! First, I shall nap.</p>
+      <p>We also offer allergy friendly cake bites!!</p>
       <img 
         className="img-home"
         src="./images/choco-mint.jpg"
-      // alt="choco mint cakebite"
       />
        {/* <div>
             <button className="modalBtn" onClick={() => setOpenModal(true)}>Modal</button>

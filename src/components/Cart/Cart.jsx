@@ -19,15 +19,43 @@ function Cart() {
             email: customerInfo.username,
             total: cartTotal,
             cakebites: allCakeBites
-        }
+        };
         console.log('POST DATA IN CART', postData);
-        yield axios.post('/api/cakebite')
-            dispatch({
-                type: 'SET_CAKEBITE',
-                payload: postData
-            })
-        
+        // yield axios.post('/api/cakebite')
+        //     dispatch({
+        //         type: 'SET_CAKEBITE',
+        //         payload: postData
+        //     })
+
+        dispatch(checkoutRequest(postData));
+        dispatch(emptyCart());
+        dispatch(clearCartTotal());
+
+        history.push('/');
     }
+
+    return (
+        <div>
+            <h2>Checkout:</h2>
+            <div className="showCustomerInfo">
+                {user_first_name}
+                {user_last_name}
+                {email}
+            </div>
+            <div>
+                For {user_first_name}
+            </div>
+            <div>
+                <CartTable />
+            </div>
+            <div className="totalCart">
+                Total: {cartTotal}
+                <button className="checkout" onClick={handleCart}>
+                    Place Order
+                </button>
+            </div>
+        </div>
+    )
 }
 
 export default Cart;
