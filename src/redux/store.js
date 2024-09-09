@@ -15,7 +15,7 @@ const middlewareList = process.env.NODE_ENV === 'development' ?
   [sagaMiddleware, logger] :
   [sagaMiddleware];
 
-// ------------ CAKE BITE ITEM  ------------ //
+// ------------ CAKE BITE ITEM REDUCER------------ //
 const currentCakeBite = (state = {}, action) => {
   console.log('HI! currentCakeBite reducerrrr:', action)
   if (action.type === 'SET_CAKEBITES') {

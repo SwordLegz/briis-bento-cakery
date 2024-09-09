@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Modal from "../Modal/Modal";
-import CakeBiteItem from '../CakeBiteItem/CakeBiteItem';
-
+import CakeBiteDetails from "../CakeBiteDetails/CakeBiteDetails";
 
 
 // 1. When this component loads, call a Saga function that will
@@ -25,6 +25,7 @@ import CakeBiteItem from '../CakeBiteItem/CakeBiteItem';
 
 function ShopCakeBites({getFlavor, flavor}) {
         const dispatch = useDispatch()
+        const history = useHistory()
 
         useEffect(() => {
             // Yell at a Saga fuction here!
@@ -42,11 +43,11 @@ function ShopCakeBites({getFlavor, flavor}) {
 
         const handleClickedImg = (id) => {
             console.log('CAKEBITE ID is:', id);
-            dispatch({
-                type: 'GET_CAKEBITE',
-                payload: id
-            })
-            // history.push('/shop/${id}');
+            // dispatch({
+            //     type: 'GET_CAKEBITE',
+            //     payload: id
+            // })
+            history.push(`/shop/${id}`);
         }
 
         return (

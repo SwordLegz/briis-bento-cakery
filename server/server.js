@@ -7,9 +7,9 @@ const PORT = process.env.PORT || 5001;
 const sessionMiddleware = require('./modules/session-middleware');
 const passport = require('./strategies/user.strategy');
 
-// --------- Route Includes --------- //
+// --------- ROUTES INCLUDE --------- //
 const userRouter = require('./routes/user.router');
-const shopRouter = require('./routes/shop.router.js');
+const shopRouter = require('./routes/shop.router');
 // const orderRouter = require('/routes/order.router.js');
 
 // --------- Express Middleware --------- //

@@ -19,6 +19,7 @@ import Home from '../Home/Home';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CakeBiteDetails from '../CakeBiteDetails/CakeBiteDetails';
 // import Modal from '../Modal/Modal';
 
 import './App.css';
@@ -48,6 +49,9 @@ function App() {
           
           <Route exact path="/shop">
             <ShopCakeBites />
+          </Route>
+          <Route exact path="/shop/:id">
+            <CakeBiteDetails />
           </Route>
           <Route
             // shows AboutPage at all times (logged in or not)
