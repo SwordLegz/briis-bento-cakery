@@ -1,35 +1,35 @@
-// import { put, takeEvery, takeLatest } from 'redux-saga/effects';
-// import axios from 'axios';
+import { put, takeEvery, takeLatest } from 'redux-saga/effects';
+import axios from 'axios';
 
-// function* handlePlaceOrder(action) {
-//     try {
-//         const orderData = action.payload;
-//         const orderResponse = yield axios.post('/api/order', orderData);
-//         console.log('UR ORDER was a sucCESS:', orderResponse);
+function* handlePlaceOrder(action) {
+    try {
+        const orderData = action.payload;
+        const orderResponse = yield axios.post('/api/order', orderData);
+        console.log('UR ORDER was a sucCESS:', orderResponse);
 
-//         yield put({
-//             type: 'PLACE_ORDER_SUCCESS',
-//             payload: orderResponse.data
-//         })
-//         yield put({
-//             type: 'EMPTY_CART'
-//         })
-//         yield put({
-//             type: 'CLEAR_CART_TOTAL'
-//         })
-//     } catch (error) {
-//         console.log('ORDER ERROR cannot dooo:', error);
-//         yield put({
-//             type: 'PLACE_ORDER_FALURE'
-//         });
-//     }
-// }
+        yield put({
+            type: 'PLACE_ORDER_SUCCESS',
+            payload: orderResponse.data
+        })
+        yield put({
+            type: 'EMPTY_CART'
+        })
+        yield put({
+            type: 'CLEAR_CART_TOTAL'
+        })
+    } catch (error) {
+        console.log('ORDER ERROR cannot dooo:', error);
+        yield put({
+            type: 'PLACE_ORDER_FALURE'
+        });
+    }
+}
 
-// function* orderSaga() {
-//     yield takeLatest('PLACE_ORDER_REQUEST', handlePlaceOrder)
-// }
+function* orderSaga() {
+    yield takeLatest('PLACE_ORDER_REQUEST', handlePlaceOrder)
+}
 
-// export default orderSaga;
+export default orderSaga;
 
 // // function* handlePlaceOrder(action) {
 // //     try {

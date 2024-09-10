@@ -5,7 +5,7 @@ import CartTable from "./CartTable";
 
 function Cart() {
     const user = useSelector(store => store.user);
-    const cartTotal = useSelector(store => store.cartTotal);
+    // const cartTotal = useSelector(store => store.cartTotal);
     // const cart = useSelector(store => store.cart);
     const history = useHistory();
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ function Cart() {
     const handleCart = () => {
         let allCakeBites = cartItems.map((cakebites) => (
             {id: cakebites.id, 
-                // flavor: flavor, quantity: quantity, cakebites: allCakeBites
+                flavor: flavor, quantity: quantity, cakebites: allCakeBites
             }
         ))
         // const postData = {

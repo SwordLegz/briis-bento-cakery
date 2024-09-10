@@ -10,6 +10,7 @@ const passport = require('./strategies/user.strategy');
 // --------- ROUTES INCLUDE --------- //
 const userRouter = require('./routes/user.router');
 const shopRouter = require('./routes/shop.router');
+const ordersRouter = require('./routes/orders.router');
 // const cartRouter = require('/routes/cart.router');
 // const orderRouter = require('/routes/order.router.js');
 
@@ -28,6 +29,7 @@ app.use(passport.session());
 // --------- ROUTES --------- //
 app.use('/api/user', userRouter);
 app.use('/api/shop', shopRouter);
+app.use('/api/orders', ordersRouter);
 // app.use('/api/cart', cartRouter)
 
 // app.use('/api/order', orderRouter);
