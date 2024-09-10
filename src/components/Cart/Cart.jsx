@@ -5,7 +5,7 @@ import CartTable from "./CartTable";
 
 function Cart() {
     const user = useSelector(store => store.user);
-    // const cartTotal = useSelector(store => store.cartTotal);
+    const cartTotal = useSelector(store => store.cartTotal);
     // const cart = useSelector(store => store.cart);
     const history = useHistory();
     const dispatch = useDispatch();

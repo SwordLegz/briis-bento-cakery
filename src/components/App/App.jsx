@@ -20,7 +20,7 @@ import Cart from '../Cart/Cart';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import CakeBiteDetails from '../CakeBiteDetails/CakeBiteDetails';
+import CakeBiteDetails from '../CakeBiteItem/CakeBiteDetails';
 // import Modal from '../Modal/Modal';
 
 import './App.css';

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Modal from "../Modal/Modal";
-import CakeBiteDetails from "../CakeBiteDetails/CakeBiteDetails";
+import CakeBiteDetails from "../CakeBiteItem/CakeBiteDetails";
 import './ShopCakeBites.css';
 
 

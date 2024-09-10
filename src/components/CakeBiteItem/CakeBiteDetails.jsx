@@ -18,13 +18,12 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // 1. useSelector to get the shopReducer data
     const shopReducer = useSelector(store => store.shopReducer)
 
-    // 2. Get the data out of this reducer for the one cakebite we want to render.
-    //    * Loop through the reducer and find the object whose id matches the
-    //      cakeBiteId we got from the useParams friend.
 
-    // FIND THE CAKEBIT ITEM BASED ON THE ID //
+    // --------- FIND THE CAKEBIT ITEM BASED ON THE ID ---------//
     let cakeBiteItem = shopReducer.find(item => item.id === cakeBiteId) || {};
     
+
+    // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
     useEffect(() => {
         const basePrice = 34.99;
         let newPrice;
@@ -44,6 +43,14 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
         setAdjustedPrice(newPrice);
     }, [selectedQuantity]);
 
+    const handleChange = (event) => {
+        // setSelectedQuantity(event.target.value);
+        const newQuantity = Number(event.target.value);
+        setSelectedQuantity(newQuantity);
+    }
+// ---------- END PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
+
+
     // ---------- BACK TO SHOP BUTTON ---------- //
     const backToShop = () => {
         history.push('/shop');
@@ -54,11 +61,6 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
-    const handleChange = (event) => {
-        // setSelectedQuantity(event.target.value);
-        const newQuantity = Number(event.target.value);
-        setSelectedQuantity(newQuantity);
-    }
 
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCart = () => {
@@ -71,62 +73,20 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             payload: [cakebiteToAdd]
         })
     }
-    // ---------- END SENDS ITEMS TO CART ---------- //
 
-
-    // // Loop through shopReducer:
-    // for (let item of shopReducer) {
-    //     // IF current thing's ID matches cakeBiteId:
-    //     if (item.id === cakeBiteId) {
-    //         // Set cakeBiteItem equal to current thing:
-    //         cakeBiteItem = item
-    //     }
-    // }
-
-   
-   
-    
-
-    // // ---------- FOR QUANTITY INPUT CHANGES ---------- //
-    // const getRadioValue = () => {
-    //     let ele = document.getElementsByName('method');
-    //     console.log(ele)
-    //     for (let i = 0; i < ele.length; i++) {
-    //         if (ele[i].checked) {
-    //         return ele[i].value
-    //     }}
-    //     return '';
-    // }
-
-    // const handleChange = (event) => {
-    //     // setSelectedQuantity(event.target.value);
-    //     const newQuantity = Number(event.target.value);
-    //     setSelectedQuantity(newQuantity);
-    //     adjustPrice(newQuantity);
-    // }
+    // ---------- FOR QUANTITY INPUT CHANGES ---------- //
+    const getRadioValue = () => {
+        let ele = document.getElementsByName('method');
+        console.log(ele)
+        for (let i = 0; i < ele.length; i++) {
+            if (ele[i].checked) {
+            return ele[i].value
+        }}
+        return '';
+    }
     // ---------- END QUANTITY INPUT CHANGES ---------- //
 
-    // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
-    // const priceAdjustor = () => {
-    //     // define base price //
-        
-    //     // State to store selected quantity and adjusted price //
-    
-    // // function to adjust price based on selected quantity //
-    // const adjustPrice = (quantity) => {
-    //     let newPrice;
-
-    //     // Use if-else or switch to adjust the price based on quantity //
-        
-        
-    // }
-    // }
-    
-    // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
-
-    
-
-   
+    // ---------- RETURN THE STUFF---------- //
 
     return (
         <>
@@ -184,15 +144,25 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             
         </div>
         </>
-    )
-
-    
-};
-// }
+    );
+}
+// ---------- RETURN THE STUFF---------- //
 
 export default CakeBiteDetails;
 
 // -------------- OLD CODE, MIGHT WORK LATER?? -------------- //
+
+  // ---------- END SENDS ITEMS TO CART ---------- //
+
+
+    // // Loop through shopReducer:
+    // for (let item of shopReducer) {
+    //     // IF current thing's ID matches cakeBiteId:
+    //     if (item.id === cakeBiteId) {
+    //         // Set cakeBiteItem equal to current thing:
+    //         cakeBiteItem = item
+    //     }
+    // }
 
 // useEffect(() => {
     //     dispatch({
@@ -253,4 +223,28 @@ export default CakeBiteDetails;
     //         payload: cakebiteToRemove
     //     })
     //     setButtonDecision(true);
+    // }
+
+    // const handleChange = (event) => {
+    //     // setSelectedQuantity(event.target.value);
+    //     const newQuantity = Number(event.target.value);
+    //     setSelectedQuantity(newQuantity);
+    //     adjustPrice(newQuantity);
+    // }
+    // ---------- END QUANTITY INPUT CHANGES ---------- //
+
+    // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
+    // const priceAdjustor = () => {
+    //     // define base price //
+        
+    //     // State to store selected quantity and adjusted price //
+    
+    // // function to adjust price based on selected quantity //
+    // const adjustPrice = (quantity) => {
+    //     let newPrice;
+
+    //     // Use if-else or switch to adjust the price based on quantity //
+        
+        
+    // }
     // }
