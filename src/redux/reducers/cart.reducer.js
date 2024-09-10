@@ -1,14 +1,41 @@
-// import axios from 'axios';
-// import { useSelector } from 'react-redux';
-// import { put, takeLatest } from 'redux-saga/effects';
-
-// function* Cart() {
-//     try {
-//         // const cartTotal = useSelector(store.cartTotal);
-//         // const cart = useSelector(store.cart);
-//         switch (action.type) {
-//             case 
-//         }
+const cartReducer = (state = [], action) => {
+    switch (action.type) {
+      case 'ADD_CAKEBITE_TO_CART':
+        console.log('ADD_CAKEBITE_TO_CART log');
         
+        // Add new cakebite to the cart
+        return [...state, action.payload];
+      case 'REMOVE_FROM_CART':
+        // Remove cakebite from the cart by ID
+        return state.filter(item => item.id !== action.payload);
+      case 'EMPTY_CART':
+        // Empty the cart
+        return [];
+      default:
+        return state;
+    }
+  };
+  export default cartReducer;
+
+
+  // ------------ OLD CODE MIGHT WORK?? ------------ //
+
+//   if (action.type === 'ADD_TO_CART') {
+//       let newCart = [...state, action.payload]
+//       return newCart;
+//     } else 
+//     if (action.type === 'REMOVE_FROM_CART') {
+//       let newCart = state.filter((el) => {
+//         return el.id !== action.payload
+//       })
+//       return newCart;
 //     }
-// }
+//     else if (action.type === 'EMPTY_CART') {
+//       let cartTotal = action.payload;
+//       return cartTotal;
+//     } else
+//      if (action.type === 'ADD_CAKEBITE_TO_CART') {
+//         let addedCakebite = [...state, [action.payload]]
+//         return addedCakebite;
+//     }
+//     return state;

@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-function* handleCart(action) {
+function* placeOrder(action) {
     try {
-        const response = yield axios.post('/api/order')
+        yield axios.post('/api/cart', action.payload);
         yield put(checkoutSuccess());
         alert('Your oder has been placed!!');
     } catch (error) {
@@ -13,7 +13,24 @@ function* handleCart(action) {
 } 
 
 function* cartSaga() {
-    yield takeEvery(CHECKOUT_REQUEST, handleCart);
+    yield takeEvery(CHECKOUT_REQUEST, placeOrder);
 }
 
 export default cartSaga;
+
+
+// const postData = {
+//     first_name: user.first_name,
+//     last_name: user.last_name,
+//     email: user.username,
+//     total: cartTotal,
+//     cakebites: allCakeBites
+// };
+// console.log('POST DATA IN CART', postData);
+// yield axios.post('/api/cart')
+//     dispatch({
+//         type: 'SET_CAKEBITE',
+//         payload: postData
+//     })
+
+// dispatch(checkoutRequest(postData));

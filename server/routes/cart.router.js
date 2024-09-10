@@ -2,22 +2,21 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool');
 
-// --------- GET ORDER ROUTE --------- //
-router.get('/', (req, res) => {
-    pool.query(`SELECT* FROM "orders"`)
-    .then((result) => {
-        res.send(result.rows);
-    }).catch((error) => {
-        console.log('ERROR in GET order router', error);
-        res.sendStatus(500);
-    })
-})
+// --------- GET CART ROUTE --------- //
+// router.get('/', (req, res) => {
+//     pool.query(`SELECT* FROM "orders"`)
+//     .then((result) => {
+//         res.send(result.rows);
+//     }).catch((error) => {
+//         console.log('ERROR in GET order router', error);
+//         res.sendStatus(500);
+//     })
+// })
 
-// --------- POST ORDER ROUTE --------- //
-router.post('/', async (req, res) => {
-    const client = await pool.connect();
+// --------- POST CART ROUTE --------- //
+router.post('/', (req, res) => {
 
-    try {
+    
         const {
             user_id,
             date,
@@ -42,14 +41,14 @@ router.post('/', async (req, res) => {
 
         await client.query('COMMIT')
         res.sendStatus(201);
-    } catch (error) {
-        await client.query('ROLLBACK')
-        console.log('ERROR POST /api/order in order router', error);
-        res.sendStatus(500)
-    } finally {
-        client.release()
-    }
-});
+    } 
+    // catch (error) {
+    //     await client.query('ROLLBACK')
+    //     console.log('ERROR POST /api/order in order router', error);
+    //     res.sendStatus(500)
+    // } finally {
+    // }
+);
 
 // --------- DELETE ORDER ROUTE --------- //
 

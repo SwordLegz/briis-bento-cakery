@@ -15,14 +15,6 @@ import './ShopCakeBites.css';
 // 4. Down in this component's return, need to map through the
 //    array of cakebites objects (the data we got out of redux).
 
-// const useStyles = makeStyles({
-//     root: {
-//         maxWidth: 345,
-//     },
-//     media: {
-//         height: 140
-//     }
-// });
 
 function ShopCakeBites({getFlavor, flavor}) {
         const dispatch = useDispatch()

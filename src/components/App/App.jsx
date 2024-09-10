@@ -16,6 +16,7 @@ import Events from '../Events/Events';
 import Contact from '../Contact/Contact';
 import ShopCakeBites from '../ShopCakeBites/ShopCakeBites';
 import Home from '../Home/Home';
+import Cart from '../Cart/Cart';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -47,9 +48,14 @@ function App() {
 
           {/* Visiting localhost:5173/about will show the about page. */}
           
+          <Route exact path="/cart">
+            <Cart />
+          </Route>
+
           <Route exact path="/shop">
             <ShopCakeBites />
           </Route>
+          
           <Route exact path="/shop/:id">
             <CakeBiteDetails />
           </Route>

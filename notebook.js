@@ -60,7 +60,73 @@
 // }
 // // ------------ END OF GENERATOR FUNCTIONS  ------------ //
 
-// // 4. *---------- REDUCERS MOVIES, GENRES, & DETAILS ---------- * //
+// // 4. *---------- OBSOLETE REDUCERS  ---------- * //
+
+// ------------ OBSOLETE CAKE BITE ITEM REDUCER------------ //
+// const currentCakeBite = (state = {}, action) => {
+//   console.log('HI! currentCakeBite reducerrrr:', action)
+//   if (action.type === 'SET_CAKEBITES') {
+//     const flavors = []
+//     for (let result of action.payload) {
+//       flavors.push(result.flavor)
+//     }
+//     let cakeBiteObject = {
+//       cakebiteId: action.payload[0].id,
+//       cakebiteFlavor: action.payload[0].flavor,
+//       image: action.payload[0].image,
+//       description: action.payload[0].description
+//     }
+//     return cakeBiteObject
+//   }
+//   return state;
+// }
+
+  // ------------ CAKE BITE CART REDUCER ------------ //
+  // const cart = (state =[], action) => {
+  //   if (action.type === 'ADD_TO_CART') {
+  //     let newCart = [...state, aciton.payload]
+  //     return newCart;
+  //   } else if (action.type === 'REMOVE_FROM_CART') {
+  //     let newCart = state.filter((el) => {
+  //       return el.id !== action.payload
+  //     })
+  //     return newCart;
+  //   }
+  //   else if (action.type === 'EMPTY_CART') {
+  //     let cartTotal = action.payload;
+  //     return cartTotal;
+  //   }
+  //   return state;
+  // }
+
+    // ------------ CART TOTAL REDUCER ------------ //
+  // const cartTotal = (state = 0, action) => {
+  //   if (action.type === 'ADD_CART_TOTAL') {
+  //     let cartTotal = math.round((state + Number(action.payload)) * 100) / 100;
+  //     return cartTotal;
+  //   } else if (action.type === 'REMOVE_CART_TOTAL') {
+  //     let cartTotal = math.round((state - Number(action.payload)) * 100) / 100;
+  //     return cartTotal;
+  //   } else if (action.type === 'CLEAR_CART_TOTAL') {
+  //     let cartTotal = action.payload;
+  //     return cartTotal;
+  //   }
+  //   return state;
+  // }
+
+  // ------------ CUSTOMER INFO REDUCER?? ------------ //
+  // const customerInfo = (state = [], action) => {
+  //   if (action.type === 'ADD_CUSTOMER') {
+  //     let currentCustomer = [action.payload];
+  //     return currentCustomer;
+  //   } else if (action.type === 'CLEAR_CUSTOMER') {
+  //     let cartTotal = action.payload;
+  //     return cartTotal;
+  //   }
+  //   return state;
+  // }
+
+  
 
 // // Used to store cakebites returned from the server //
 
