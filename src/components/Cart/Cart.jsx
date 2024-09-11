@@ -2,6 +2,8 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { useHistory } from "react-router-dom";
 import CartTable from "./CartTable";
+import Swal from "sweetalert2";
+
 
 function Cart() {
     const user = useSelector(store => store.user);
@@ -16,6 +18,14 @@ function Cart() {
     
     const handleCart = () => {
      
+        Swal.fire({
+            title: "Thankiezzz!",
+            // text: "Thankiezzz!",
+            imageUrl: "../images/octopus.jpeg",
+            imageWidth: 400,
+            imageHeight: 400,
+            // imageAlt: "Custom image"
+          });
         const postData = {
             date: specificDate,
             user_id: user.id,

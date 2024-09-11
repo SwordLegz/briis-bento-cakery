@@ -35,6 +35,7 @@ function Nav() {
           Contact Us
           </button>
             </Link>
+            
       <div>
         {/* If no user is logged in, show these links */}
         {!user.id && (

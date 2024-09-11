@@ -10,10 +10,10 @@ function CartTable({ item, setItemToEdit }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
-    // State to store the total price
+    // STATE TO STORE TOTAL PRICE //
     const [total, setTotal] = useState(0);
 
-    // Calculate the total price and update the state
+    // CALCULATES TOTAL PRICE & UPDATES STATE //
     const calculateTotal = () => {
         const newTotal = cart.reduce((total, cakebite) => {
             return total + cakebite.price;
@@ -21,7 +21,7 @@ function CartTable({ item, setItemToEdit }) {
         setTotal(newTotal);
     };
 
-    // Recalculate total whenever cart changes
+    // RECALCULATES TOTAL WHENEVER CART CHANGES //
     useEffect(() => {
         calculateTotal();
     }, [cart]);
@@ -30,13 +30,13 @@ function CartTable({ item, setItemToEdit }) {
     const deleteButton = (cakebite) => {
 
         Swal.fire({
-            title: "You're about to obliterate this item from your list!!",
+            title: "You're about to obliterate this item from your cart!!",
             text: "You won't be able to undo this!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#04bb99",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, obliterate it from my shopping list!"
+            confirmButtonText: "Yes, obliterate it from my cart!"
           }).then((result) => {
             if (result.isConfirmed) {
             dispatch({
@@ -45,7 +45,7 @@ function CartTable({ item, setItemToEdit }) {
             });
               Swal.fire({
                 title: "Obliterated!!",
-                text: "Your item has been obliterated from your shopping list!",
+                text: "Your item has been obliterated from your cart!",
                 icon: "success"
               });
             }
@@ -54,20 +54,14 @@ function CartTable({ item, setItemToEdit }) {
             console.log(err);
         });
     }
-        // const postData = {
-        //     cartItem: cart.id
-        // };
-        // dispatch({
-        //     type: 'REMOVE_FROM_CART',
-        //     payload: postData
-        // });
+    // --------- END DELETE BUTTON -------- //
     
 
     // --------- EDIT BUTTON -------- //
     const editCakebiteItem = () => {
         setItemToEdit(item);
     };
-
+    // --------- END EDIT BUTTON -------- //    
 
 
     return (

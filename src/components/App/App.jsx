@@ -48,17 +48,23 @@ function App() {
 
           {/* Visiting localhost:5173/about will show the about page. */}
           
-          <Route exact path="/cart">
+          {/* <Route exact path="/cart">
             <Cart />
-          </Route>
+          </Route> */}
 
+          <Route exact path="/home">
+            <Home />
+          </Route>
+          
           <Route exact path="/shop">
             <ShopCakeBites />
           </Route>
           
-          <Route exact path="/shop/:id">
+          
+          {/* <Route exact path="/shop/:id">
             <CakeBiteDetails />
-          </Route>
+          </Route> */}
+          
           <Route
             // shows AboutPage at all times (logged in or not)
             exact
@@ -85,18 +91,26 @@ function App() {
             Visiting localhost:5173/home will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
             Even though it seems like they are different pages, the user is always on localhost:5173/user */}
-          <ProtectedRoute
+          
+          {/* <ProtectedRoute
             // logged in shows UserPage else shows LoginPage
             exact
             path="/home">
             <Home />
+          </ProtectedRoute> */}
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/cart">
+            <Cart />
           </ProtectedRoute>
 
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
-            path="/contact">
-            <Contact />
+            path="/shop/:id">
+            <CakeBiteDetails />
           </ProtectedRoute>
 
           <Route
@@ -125,7 +139,7 @@ function App() {
             }
           </Route>
 
-          <Route
+          {/* <Route
             exact
             path="/home">
             {user.id ?
@@ -136,7 +150,7 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
-          </Route>
+          </Route> */}
 
           {/* If none of the other routes matched, we will show a 404. */}
         </Switch>

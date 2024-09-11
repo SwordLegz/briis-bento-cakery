@@ -21,8 +21,13 @@ function Header() {
         <div>
             <div>
                 <header className="header">Brii's Bento Cakery
+                    
+                    
+                    
                     <button className="btn"
                             onClick={goToCart}>Cart</button>
+
+
                 </header>
             </div>
             
