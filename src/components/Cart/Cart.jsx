@@ -52,7 +52,6 @@ function Cart() {
             </div>
             <br />
             <div className="totalCart">
-                Total: 
                 <button className="checkout" onClick={handleCart}>
                     Place Order
                 </button>
