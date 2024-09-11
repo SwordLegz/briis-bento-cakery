@@ -225,26 +225,11 @@ export default CakeBiteDetails;
     //     setButtonDecision(true);
     // }
 
-    // const handleChange = (event) => {
-    //     // setSelectedQuantity(event.target.value);
-    //     const newQuantity = Number(event.target.value);
-    //     setSelectedQuantity(newQuantity);
-    //     adjustPrice(newQuantity);
     // }
     // ---------- END QUANTITY INPUT CHANGES ---------- //
 
     // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
-    // const priceAdjustor = () => {
-    //     // define base price //
-        
-    //     // State to store selected quantity and adjusted price //
     
-    // // function to adjust price based on selected quantity //
-    // const adjustPrice = (quantity) => {
-    //     let newPrice;
-
-    //     // Use if-else or switch to adjust the price based on quantity //
-        
         
     // }
     // }

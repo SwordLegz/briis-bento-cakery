@@ -11,32 +11,29 @@ function Cart() {
     const dispatch = useDispatch();
 
     const cartItems = useSelector(store => store.cartReducer);
-
+    // const foPLACE_ORDER_REQUESTrmattedDate = specificDate.toISOString().split('T')[0];
+    const specificDate = new Date();
+    
     const handleCart = () => {
-        let allCakeBites = cartItems.map((cakebites) => (
-            {id: cakebites.id, 
-                flavor: flavor, quantity: quantity, cakebites: allCakeBites
-            }
-        ))
-        // const postData = {
-        //     first_name: user.first_name,
-        //     last_name: user.last_name,
-        //     email: user.username,
-        //     total: cartTotal,
-        //     cakebites: allCakeBites
-        // };
-        // console.log('POST DATA IN CART', postData);
+     
+        const postData = {
+            date: specificDate,
+            user_id: user.id,
+            isDone: false,
+            cartTotal: cartItems,
+        };
+        console.log('POST DATA IN CART', postData);
         // yield axios.post('/api/cart')
-        //     dispatch({
-        //         type: 'SET_CAKEBITE',
-        //         payload: postData
-        //     })
+            dispatch({
+                type: 'ORDER_IS_SENT',
+                payload: postData
+            })
 
         // dispatch(checkoutRequest(postData));
         // dispatch(emptyCart());
         // dispatch(clearCartTotal());
 
-        history.push('/');
+        // history.push('/');
     }
 
     return (
