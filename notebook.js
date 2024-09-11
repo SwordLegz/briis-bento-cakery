@@ -318,24 +318,6 @@ import axios from 'axios';
 // // // as props through the components.  but the overall List looks 
 // // // like this.
 
-// // import React from 'react';
-// // import GalleryItem from '../GalleryItem/GalleryItem';
-// // import './GalleryList.css'
-// // function GalleryList({ galleryItems, youLoveArt, deleteArt }) {
-// //   return (
-// //     <div data-testid="galleryList" className="gallery-list">
-// //       {galleryItems.map((item) => (
-// //         <GalleryItem 
-// //         key={item.id} 
-// //         item={item} 
-// //         deleteArt={() => deleteArt(item.id)}
-// //         youLoveArt={() => youLoveArt(item.id)}
-// //         />
-// //       ))}
-// //     </div>
-// //   );
-// // }
-// // export default GalleryList;
 
 // // // and then the individual Items that get rendered in the list 
 // // // are like this.

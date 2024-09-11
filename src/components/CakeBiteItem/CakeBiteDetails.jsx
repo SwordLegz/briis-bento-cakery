@@ -65,7 +65,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCart = () => {
         let quantity = getRadioValue();
-        let cakebiteToAdd = {id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
+        let cakebiteToAdd = {flavor_id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
 
         dispatch({
             type: 'ADD_ORDER_TO_CART',
@@ -92,11 +92,6 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 
     return (
         <>
-        <button className="back-to-shop"
-        onClick={backToShop}>
-            Back to Shop
-        </button>
-
         <div>
             <figure>
             <h1>{cakeBiteItem.flavor}</h1>
@@ -105,7 +100,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                  alt={cakeBiteItem.flavor} />
             <br />
             <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
-            <h3>Description:</h3>
+            {/* <h3>Description:</h3> */}
             <p>{cakeBiteItem.description}</p>
             </figure>
             <div className='method'>
@@ -143,6 +138,13 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                  <button className="addToCart"
                         onClick={addToCart}>Add to Cart</button> 
             </figure>
+            <figure>
+            <button className="back-to-shop"
+                    onClick={backToShop}>
+                        Back to Shop
+            </button>
+            </figure>
+            
             
         </div>
         </>

@@ -23,14 +23,14 @@ function* addCakebiteToCart (action) {
     }
 }
 
-function* chrisIsWow (action) {
-    console.log('MeYAAAAAAAhhhh bitcharoni from shop.saga', action)
-}
+// function* chrisIsWow (action) {
+//     console.log('MeYAAAAAAAhhhh bitcharoni from shop.saga', action)
+// }
 
 function* shopSaga() {
     yield takeLatest('FETCH_CAKEBITES', fetchCakeBites)
     yield takeLatest('ADD_ORDER_TO_CART', addCakebiteToCart)
-    yield takeLatest('ORDER_IS_SENT', chrisIsWow)
+    // yield takeLatest('ORDER_IS_SENT', chrisIsWow)
 }
 
 export default shopSaga;

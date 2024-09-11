@@ -30,9 +30,9 @@ function CartTable() {
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Name:</th>
+                        {/* <th>Name:</th>
                         <th>Quantity:</th>
-                        <th>Price:</th>
+                        <th>Price:</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -42,9 +42,11 @@ function CartTable() {
                                 <td><img className="cakebiteImage"
                                     src={cakebite.image ? cakebite.image : ""}
                                     alt={cakebite.image} /></td>
-                                <td>{cakebite.flavor}</td>
-                                <td>{cakebite.quantity}</td>
-                                <td>${cakebite.price.toFixed(2)}</td>
+                                    <br />
+                                <td><h4>Flavor:</h4> {cakebite.flavor}
+                                    <h4>Quantity:</h4> {cakebite.quantity} 
+                                    <h4>Price:</h4> ${cakebite.price.toFixed(2)}
+                                    </td>
                             </tr>
                         )
                     })}

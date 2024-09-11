@@ -4,7 +4,7 @@ import axios from 'axios';
 function* handlePlaceOrder(action) {
     try {
         const orderData = action.payload;
-        const orderResponse = yield axios.post('/api/order', orderData);
+        const orderResponse = yield axios.post('/api/orders', orderData);
         console.log('UR ORDER was a sucCESS from orders.saga:', orderResponse);
 
         yield put({
@@ -25,24 +25,9 @@ function* handlePlaceOrder(action) {
     }
 }
 
-function* sendOrderToDatabase(action) {
-    try {
-        const orderToSend = action.payload[0];
-        console.log('ORDER beIng SenT THX in orders.saga:', orderToSend)
-
-        yield put({
-            type: 'ORDER_IS_SENT',
-            payload: orderToSend
-        })
-        console.log('OrDer Is SeNt YAH from orders.saga:', orderToSend)
-    } catch (error) {
-        console.log('OOPSIEs ErroR timE in orders.saga:', error)
-    }
-}
-
 function* orderSaga() {
-    yield takeLatest('PLACE_ORDER_REQUEST', handlePlaceOrder)
-    yield takeLatest('ORDER_IS_SENT', sendOrderToDatabase)
+    // yield takeLatest('PLACE_ORDER_REQUEST', handlePlaceOrder)
+    yield takeLatest('ORDER_IS_SENT', handlePlaceOrder)
 }
 
 export default orderSaga;
