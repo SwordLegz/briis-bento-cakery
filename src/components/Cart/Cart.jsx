@@ -11,7 +11,7 @@ function Cart() {
     const dispatch = useDispatch();
 
     const cartItems = useSelector(store => store.cartReducer);
-    // const foPLACE_ORDER_REQUESTrmattedDate = specificDate.toISOString().split('T')[0];
+    // const formattedDate = specificDate.toISOString().split('T')[0];
     const specificDate = new Date();
     
     const handleCart = () => {
@@ -20,18 +20,14 @@ function Cart() {
             date: specificDate,
             user_id: user.id,
             isDone: false,
-            cartTotal: cartItems,
+            cartItems: cartItems,
         };
-        console.log('POST DATA IN CART', postData);
+        console.log('POST data IN Cart.jsx', postData);
         // yield axios.post('/api/cart')
             dispatch({
                 type: 'ORDER_IS_SENT',
                 payload: postData
             })
-
-        // dispatch(checkoutRequest(postData));
-        // dispatch(emptyCart());
-        // dispatch(clearCartTotal());
 
         // history.push('/');
     }
@@ -49,14 +45,14 @@ function Cart() {
                 <br />
             </div>
             <div>
-                {/* For {user_first_name} */}
+
             </div>
             <div>
                 <CartTable />
             </div>
+            <br />
             <div className="totalCart">
                 Total: 
-                {/* {cartTotal}  */}
                 <button className="checkout" onClick={handleCart}>
                     Place Order
                 </button>

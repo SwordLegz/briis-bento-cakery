@@ -17,6 +17,7 @@ function CartTable() {
                     <th>Name:</th>
                     <th>Image:</th>
                     <th>Quantity:</th>
+                    <th>Total Price:</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,8 +25,11 @@ function CartTable() {
                     return (
                         <tr key={cakebite.id}>
                             <td>{cakebite.flavor}</td>
-                            <td>{cakebite.image}</td>
+                            <td><img className="cakebiteImage"
+                                    src={cakebite.image ? cakebite.image : ""}
+                                    alt={cakebite.image}/></td>
                             <td>{cakebite.quantity}</td>
+                            <td>{cakebite.price}</td>
                         </tr>
                     )
                 })}

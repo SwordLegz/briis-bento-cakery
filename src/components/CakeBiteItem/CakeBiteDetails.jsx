@@ -19,7 +19,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     const shopReducer = useSelector(store => store.shopReducer)
 
 
-    // --------- FIND THE CAKEBIT ITEM BASED ON THE ID ---------//
+    // --------- FIND THE CAKEBITE ITEM BASED ON THE ID ---------//
     let cakeBiteItem = shopReducer.find(item => item.id === cakeBiteId) || {};
     
 
@@ -65,19 +65,20 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCart = () => {
         let quantity = getRadioValue();
-        // let cartTotaltoAdd = cakeBiteItem.id;
-        let cakebiteToAdd = {id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity};
+        let cakebiteToAdd = {id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image};
 
         dispatch({
             type: 'ADD_ORDER_TO_CART',
             payload: [cakebiteToAdd]
         })
     }
+    // ---------- END SENDS ITEMS TO CART ---------- //
+
 
     // ---------- FOR QUANTITY INPUT CHANGES ---------- //
     const getRadioValue = () => {
         let ele = document.getElementsByName('method');
-        console.log(ele)
+        console.log('radioVALUE in CakeBiteDetails.jsx:', ele)
         for (let i = 0; i < ele.length; i++) {
             if (ele[i].checked) {
             return ele[i].value
@@ -85,6 +86,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
         return '';
     }
     // ---------- END QUANTITY INPUT CHANGES ---------- //
+
 
     // ---------- RETURN THE STUFF---------- //
 
@@ -151,8 +153,6 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 export default CakeBiteDetails;
 
 // -------------- OLD CODE, MIGHT WORK LATER?? -------------- //
-
-  // ---------- END SENDS ITEMS TO CART ---------- //
 
 
     // // Loop through shopReducer:
