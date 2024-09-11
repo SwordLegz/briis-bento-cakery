@@ -29,7 +29,9 @@ function CartTable() {
                                     src={cakebite.image ? cakebite.image : ""}
                                     alt={cakebite.image}/></td>
                             <td>{cakebite.quantity}</td>
-                            <td>{cakebite.price}</td>
+                            {/* <td><p src={cakebite.price ? cakebite.price : ""}
+                                   alt={cakebite.price}/></td> */}
+                            <td>${cakebite.price.toFixed(2)}</td>
                         </tr>
                     )
                 })}

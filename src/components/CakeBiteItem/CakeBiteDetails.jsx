@@ -65,11 +65,11 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCart = () => {
         let quantity = getRadioValue();
-        let cakebiteToAdd = {id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image};
+        let cakebiteToAdd = {id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
 
         dispatch({
             type: 'ADD_ORDER_TO_CART',
-            payload: [cakebiteToAdd]
+            payload: [cakebiteToAdd, adjustedPrice]
         })
     }
     // ---------- END SENDS ITEMS TO CART ---------- //
