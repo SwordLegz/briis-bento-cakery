@@ -2,8 +2,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-function CartTable() {
+function CartTable({ item, setItemToEdit }) {
     const cart = useSelector(store => store.cartReducer);
     const dispatch = useDispatch();
     const history = useHistory();
@@ -24,6 +26,50 @@ function CartTable() {
         calculateTotal();
     }, [cart]);
 
+    // --------- DELETE BUTTON -------- //
+    const deleteButton = (cakebite) => {
+
+        Swal.fire({
+            title: "You're about to obliterate this item from your list!!",
+            text: "You won't be able to undo this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#04bb99",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, obliterate it from my shopping list!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            dispatch({
+                type: 'REMOVE_FROM_CART',
+                payload: cakebite
+            });
+              Swal.fire({
+                title: "Obliterated!!",
+                text: "Your item has been obliterated from your shopping list!",
+                icon: "success"
+              });
+            }
+          }).catch(err => {
+            alert('Error Deleting Item')
+            console.log(err);
+        });
+    }
+        // const postData = {
+        //     cartItem: cart.id
+        // };
+        // dispatch({
+        //     type: 'REMOVE_FROM_CART',
+        //     payload: postData
+        // });
+    
+
+    // --------- EDIT BUTTON -------- //
+    const editCakebiteItem = () => {
+        setItemToEdit(item);
+    };
+
+
+
     return (
         <div>
             <table>
@@ -36,7 +82,7 @@ function CartTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cart.map((cakebite) => {
+                    {cart.map((cakebite, index) => {
                         return (
                             <tr key={cakebite.id}>
                                 <td><img className="cakebiteImage"
@@ -47,6 +93,9 @@ function CartTable() {
                                     <h4>Quantity:</h4> {cakebite.quantity} 
                                     <h4>Price:</h4> ${cakebite.price.toFixed(2)}
                                     </td>
+                                    <button className="btn" onClick={() => editCakebiteItem(cakebite.id)}>Edit</button>
+                                    <button className="btn" onClick={() => deleteButton(index)}>Delete</button>
+
                             </tr>
                         )
                     })}
@@ -61,63 +110,3 @@ function CartTable() {
 }
 
 export default CartTable;
-
-
-
-// import { useSelector } from "react-redux";
-// import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
-// import { useState } from "react";
-// import { useEffect } from "react";
-
-// function CartTable() {
-//     const dispatch = useDispatch();
-//     const history = useHistory();
-//     const cart = useSelector(store => store.cartReducer);
-//     // STATE TO STORE THE INDIVIDUAL PRICES //
-//     const [prices, setPrices] = useState([]);
-//     // CALCULATE THE TOTAL PRICE //
-//     const calculateTotal = () => {
-//         return prices.reduce((total, price) => total + price, 0).toFixed(2);
-//     };
-
-//     useEffect(() => {
-//         const newPrices = cart.map(cakebite => cakebite.price * cakebite.quantity);
-//         setPrices(newPrices);
-//     }, [cart]);
-
-//     return (
-//         <table>
-//             <thead>
-//                 <tr>
-//                     <th></th>
-//                     <th>Name:</th>
-//                     <th>Quantity:</th>
-//                     <th>Price:</th>
-//                 </tr>
-//             </thead>
-//             <tbody>
-//                 {cart.map((cakebite) => {
-//                     return (
-//                         <tr key={cakebite.id}>
-                            
-//                             <td><img className="cakebiteImage"
-//                                     src={cakebite.image ? cakebite.image : ""}
-//                                     alt={cakebite.image}/></td>
-//                             <td>{cakebite.flavor}</td>
-//                             <td>{cakebite.quantity}</td>
-//                             <td>${cakebite.price.toFixed(2)}</td>
-//                         </tr>
-//                     )
-//                 })}
-//             </tbody>
-
-//             <div className="total">
-//                 <h2>TOTAL: ${calculateTotal()}</h2>
-//             </div>
-
-//         </table>
-//     )
-// }
-
-// export default CartTable;

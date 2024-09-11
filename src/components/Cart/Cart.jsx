@@ -34,28 +34,33 @@ function Cart() {
 
     return (
         <div>
+            <figure>
             <h2>Checkout:</h2>
+            </figure>
             <div className="showCustomerInfo">
+                <figure>
                 <h3>Customer Information:</h3>
                 {user.first_name}
                 <br />
-                {user.last_name}
+                {/* {user.last_name} */}
                 <br />
-                {user.username}
+                {/* {user.username} */}
                 <br />
+                </figure>
             </div>
-            <div>
-
-            </div>
+            <figure>
             <div>
                 <CartTable />
             </div>
+            </figure>
             <br />
+            <figure>
             <div className="totalCart">
-                <button className="checkout" onClick={handleCart}>
+                <button className="btn" onClick={handleCart}>
                     Place Order
                 </button>
             </div>
+            </figure>
         </div>
     )
 }

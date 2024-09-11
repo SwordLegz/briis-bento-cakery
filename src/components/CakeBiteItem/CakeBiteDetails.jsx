@@ -51,19 +51,8 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 // ---------- END PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
 
 
-    // ---------- BACK TO SHOP BUTTON ---------- //
-    const backToShop = () => {
-        history.push('/shop');
-        dispatch({
-            type: 'BACK_TO_SHOP',
-            payload: {}
-        });
-    }
-    // ---------- END BACK TO SHOP BUTTON ---------- //
-
-
     // ---------- SENDS ITEMS TO CART ---------- //
-    const addToCart = () => {
+    const addToCartButton = () => {
         let quantity = getRadioValue();
         let cakebiteToAdd = {flavor_id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
 
@@ -73,6 +62,28 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
         })
     }
     // ---------- END SENDS ITEMS TO CART ---------- //
+
+
+    // ---------- GO TO CART BUTTON ---------- //
+    const goToCartButton = () => {
+        history.push('/cart');
+        dispatch({
+            type: 'GO_TO_CART',
+            payload: {}
+        });
+    }
+    // ---------- END BACK TO SHOP BUTTON ---------- //
+
+
+    // ---------- BACK TO SHOP BUTTON ---------- //
+    const backToShopButton = () => {
+        history.push('/shop');
+        dispatch({
+            type: 'BACK_TO_SHOP',
+            payload: {}
+        });
+    }
+    // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- FOR QUANTITY INPUT CHANGES ---------- //
@@ -103,6 +114,8 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             {/* <h3>Description:</h3> */}
             <p>{cakeBiteItem.description}</p>
             </figure>
+
+            <figure>
             <div className='method'>
                 <h3>Quantity:</h3>
                         <input type="radio"
@@ -134,15 +147,20 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                                onChange={handleChange} />
                         <label htmlFor="quantity100">100</label><br></br>
                     </div>
+                    </figure>
             <figure>
-                 <button className="addToCart"
-                        onClick={addToCart}>Add to Cart</button> 
+                 <button className="btn"
+                        onClick={addToCartButton}>Add to Cart</button> 
             </figure>
+            
             <figure>
-            <button className="back-to-shop"
-                    onClick={backToShop}>
+            <button className="btn"
+                    onClick={backToShopButton}>
                         Back to Shop
             </button>
+            <figure />
+            <button className="btn"
+                    onClick={goToCartButton}>Go To Cart</button>
             </figure>
             
             
@@ -156,59 +174,6 @@ export default CakeBiteDetails;
 
 // -------------- OLD CODE, MIGHT WORK LATER?? -------------- //
 
-
-    // // Loop through shopReducer:
-    // for (let item of shopReducer) {
-    //     // IF current thing's ID matches cakeBiteId:
-    //     if (item.id === cakeBiteId) {
-    //         // Set cakeBiteItem equal to current thing:
-    //         cakeBiteItem = item
-    //     }
-    // }
-
-// useEffect(() => {
-    //     dispatch({
-    //         type: 'CAKEBITE_DETAILS',
-    //         payload: {
-    //             cakebite: cakebiteId
-    //         }
-    //     })
-    // }, []);
-    //  const cardClicked = (cakebite) => {
-    //     console.log('CAKE CARD CLICKED silly goose!', cakebite);
-    //     setIsOpen(true)
-
-    //     setModalContent(cakebite)
-    //     dispatch({
-    //         type: 'CAKEBITE_DETAILS',
-    //         payload: {
-    //             cakebite: cakebite.id
-    //         }
-    //     })
-    //  }
-
-
-    // return (
-    //     <Modal
-    //         className="modalPopup"
-    //         open={isOpen}
-    //         onClose={() => setIsOpen(false)}
-    //         modalContent={modalContent}>
-    //         <cakeBiteItem
-    //             key={cakebite.id}
-    //             cakebite={cakebite}
-    //             cardClicked={cardClicked}
-    //             />
-
-    //         <h2>{cakeBiteItem.flavor}</h2>
-    //         <img src={cakeBiteItem.image}/>
-    //         <div>
-    //             <p>{cakeBiteItem.description}</p>
-    //         </div>
-
-    //     </Modal>
-
-    // )
 
     // ---------- REMOVE FROM CART?? ---------- //
 

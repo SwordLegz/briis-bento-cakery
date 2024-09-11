@@ -53,7 +53,7 @@ router.post('/', async (req, res) => {
 
 // --------- DELETE ORDER ROUTE --------- //
 
-router.delete('/:id', (req,res) => {
+router.delete('/delete/:id', (req,res) => {
     pool.query('DELETE FROM "orders" WHERE id=$1', [req.params.id])
     .then((result) => {
         res.sendStatus(200);
@@ -63,49 +63,28 @@ router.delete('/:id', (req,res) => {
     })
 });
 
+// ---------- EDIT PUT ROUTE ----------- //
+
+router.put('/edit/:id', (req, res) => {
+    console.log('BEEP BEEP your PUT cart.router for /api/cart/edit:id requestsss:');
+    const sqlText = `
+    UPDATE "orders"
+    set "quantity" =$1;
+    `
+    const sqlValues = [req.body.id, req.body.quantity, req.params.id]
+    pool.query(sqlText, sqlValues)
+    .then(() => {
+        res.sendStatus(200);
+    }).catch((error) => {
+        console.log('WHOAA Error for ur PUT in cart.router:', error);
+        res.sendStatus(500);
+    })
+});
+
 module.exports = router;
 
 
 // --------- IDK? ---------- //
 
-// router.post('/', async (req, res) => {
 
-//     const {
-//         user_id,
-//         date,
-//         flavor_id,
-//         is_egg_free,
-//         is_dairy_free,
-//         is_gluten_free,
-//         is_vegan,
-//         quantity
-//      } = req.body;
-    
-//      const client = await pool.connect();
-//      try {
-//         await client.query('BEGIN');
-//         const orderInsertResults = await client.query(`
-//             INSERT INTO "orders"("user_id", "date")
-//             VALUES ($1, $2)
-//             RETURNING id;
-//             `,
-//             [user_id, date]
-//         );
-
-//      const orderId = orderInsertResults.rows[0].id;
-
-//      const insertLineItemText = `
-//         INSERT INTO "order_items" ("order_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
-//         VALUES ($1, $2, $3, $4, $5, $6, $7);
-//         `;
-//     const insertLineItemValue = [orderId, flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity];
-//     await client.query(insertLineItemText, insertLineItemValue)
-//     const client.query('COMMIT');
-//         res.sendStatus(201);
-//     } catch (error) {
-//         await client.query('ROLLBACK');
-//         console.log('PROCESSING error:', error);
-//         res.sendStatus(500)
-//     } finally {
-//         client.release();
     

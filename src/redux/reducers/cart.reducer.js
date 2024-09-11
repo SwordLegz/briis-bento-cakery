@@ -1,3 +1,5 @@
+
+// ----------- CART REDUCER ----------- //
 const cartReducer = (state = [], action) => {
   switch (action.type) {
     case 'ADD_CAKEBITE_TO_CART':
@@ -17,23 +19,3 @@ export default cartReducer;
 
 
   // ------------ OLD CODE MIGHT WORK?? ------------ //
-
-  // if (action.type === 'ADD_TO_CART') {
-    //   let newCart = [...state, action.payload]
-    //   return newCart;
-    // } else 
-    // if (action.type === 'REMOVE_FROM_CART') {
-    //   let newCart = state.filter((el) => {
-    //     return el.id !== action.payload
-    //   })
-    //   return newCart;
-    // }
-    // else if (action.type === 'EMPTY_CART') {
-    //   let cartTotal = action.payload;
-    //   return cartTotal;
-    // } else
-    //  if (action.type === 'ADD_CAKEBITE_TO_CART') {
-    //     let addedCakebite = [...state, [action.payload]]
-    //     return addedCakebite;
-    // }
-    // return state;
