@@ -24,6 +24,7 @@ import CakeBiteDetails from '../CakeBiteItem/CakeBiteDetails';
 // import Modal from '../Modal/Modal';
 
 import './App.css';
+import RegisterForm from '../RegisterForm/RegisterForm';
 
 
 function App() {
@@ -48,74 +49,60 @@ function App() {
 
           {/* Visiting localhost:5173/about will show the about page. */}
           
-          {/* <Route exact path="/cart">
-            <Cart />
-          </Route> */}
-
-          <Route exact path="/home">
-            <Home />
+          <Route
+          exact path='/'>
+            <LandingPage />
           </Route>
-          
+
+          // CANNOT ACCESS UNLESS LOGGED IN //
+          <Route exact path="/home">
+          {user.id ? <Home /> : <LandingPage />}
+          </Route>
+          // END //
+
           <Route exact path="/shop">
             <ShopCakeBites />
           </Route>
           
           
-          {/* <Route exact path="/shop/:id">
-            <CakeBiteDetails />
-          </Route> */}
-          
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/about">
+          <Route exact path="/about">
             <AboutPage />
           </Route>
 
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/events">
+          <Route exact path="/events">
             <Events />
           </Route>
 
-          <Route
-            // shows AboutPage at all times (logged in or not)
-            exact
-            path="/contact">
+          <Route exact path="/contact">
             <Contact />
           </Route>
         
 
-          {/* For protected routes, the view could show one of several things on the same route.
-            Visiting localhost:5173/home will show the UserPage if the user is logged in.
-            If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-            Even though it seems like they are different pages, the user is always on localhost:5173/user */}
+          {/* For protected routes, the view could show one of 
+            several things on the same route.
+            Visiting localhost:5173/home will show the UserPage 
+            if the user is logged in.
+            If the user is not logged in, the ProtectedRoute will
+             show the LoginPage (component).
+            Even though it seems like they are different pages, 
+            the user is always on localhost:5173/user */}
           
-          {/* <ProtectedRoute
-            // logged in shows UserPage else shows LoginPage
-            exact
-            path="/home">
+          // logged in shows UserPage else shows LoginPage
+          <ProtectedRoute exact path="/home">
             <Home />
-          </ProtectedRoute> */}
+          </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/cart">
+          // logged in shows InfoPage else shows LoginPage
+          <ProtectedRoute exact path="/cart">
             <Cart />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/shop/:id">
+          // logged in shows InfoPage else shows LoginPage
+          <ProtectedRoute exact path="/shop/:id">
             <CakeBiteDetails />
           </ProtectedRoute>
 
-          <Route
-            exact
-            path="/login">
+          <Route exact path="/login">
             {user.id ?
               // If the user is already logged in, 
               // redirect to the /home page
@@ -126,20 +113,18 @@ function App() {
             }
           </Route>
 
-          <Route
-            exact
-            path="/registration">
+          <Route exact path="/registration">
             {user.id ?
               // If the user is already logged in, 
               // redirect them to the /home page
               <Redirect to="/home" />
               :
               // Otherwise, show the registration page
-              <RegisterPage />
+              <RegisterForm />
             }
           </Route>
 
-          {/* <Route
+          <Route
             exact
             path="/home">
             {user.id ?
@@ -150,7 +135,7 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
-          </Route> */}
+          </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
         </Switch>

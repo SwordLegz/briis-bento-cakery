@@ -95,9 +95,6 @@ function CartTable({ item, setItemToEdit }) {
                 <thead>
                     <tr>
                         <th></th>
-                        {/* <th>Name:</th>
-                        <th>Quantity:</th>
-                        <th>Price:</th> */}
                     </tr>
                 </thead>
                 <tbody>

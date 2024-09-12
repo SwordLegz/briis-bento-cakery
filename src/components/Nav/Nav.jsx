@@ -10,7 +10,7 @@ function Nav() {
   return (
     <div className="nav">
   
-      <Link className="navLink" to="/home">
+      <Link className="navLink" to="/">
         <button className="btn">
               Home
               </button>
@@ -46,6 +46,7 @@ function Nav() {
             </button>
           </Link>
         )}
+        
 
         {/* If a user is logged in, show these links */}
         {user.id && (

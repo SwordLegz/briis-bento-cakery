@@ -16,10 +16,7 @@ function Home() {
         className="img-home"
         src="./images/choco-mint.jpg"
       />
-       {/* <div>
-            <button className="modalBtn" onClick={() => setOpenModal(true)}>Modal</button>
-            <Modal open={openModal} onClose={() => setOpenModal(false)}/>
-          </div> */}
+       
     </div>
   );
 }

@@ -7,8 +7,6 @@ import Swal from "sweetalert2";
 
 function Cart() {
     const user = useSelector(store => store.user);
-    // const cartTotal = useSelector(store => store.cartTotal);
-    // const cart = useSelector(store => store.cart);
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -41,6 +39,7 @@ function Cart() {
                     imageHeight: 400,
                     // imageAlt: "Custom image"
                   });
+                  history.push('/');
             }
           }).catch(error => {
             alert('ERRORRR sending ORDER in Cart.jsx:', error);
@@ -55,7 +54,7 @@ function Cart() {
         };
         console.log('POST data IN Cart.jsx', postData);
 
-        // history.push('/');
+        
     }
 
     return (
