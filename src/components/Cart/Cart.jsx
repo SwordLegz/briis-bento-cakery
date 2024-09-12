@@ -19,13 +19,34 @@ function Cart() {
     const handleCart = () => {
      
         Swal.fire({
-            title: "Thankiezzz!",
-            // text: "Thankiezzz!",
-            imageUrl: "../images/octopus.jpeg",
-            imageWidth: 400,
-            imageHeight: 400,
-            // imageAlt: "Custom image"
+            title: "Send Order?",
+            text: "You are about to submit your order!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            cancelButtonText: "Wait, don't send order yet!",
+            confirmButtonText: "Yes, send my order plz!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch({
+                    type: 'ORDER_IS_SENT',
+                payload: postData
+                });
+                Swal.fire({
+                    title: "Thankiezzz!",
+                    text: "If you'd like to make changes to your order, you can do so through your profile!",
+                    imageUrl: "../images/octopus.jpeg",
+                    imageWidth: 400,
+                    imageHeight: 400,
+                    // imageAlt: "Custom image"
+                  });
+            }
+          }).catch(error => {
+            alert('ERRORRR sending ORDER in Cart.jsx:', error);
           });
+
+    // THIS IS THE DATA BEING SENT TO THE DATABASE //
         const postData = {
             date: specificDate,
             user_id: user.id,
@@ -33,11 +54,6 @@ function Cart() {
             cartItems: cartItems,
         };
         console.log('POST data IN Cart.jsx', postData);
-        // yield axios.post('/api/cart')
-            dispatch({
-                type: 'ORDER_IS_SENT',
-                payload: postData
-            })
 
         // history.push('/');
     }

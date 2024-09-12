@@ -58,8 +58,33 @@ function CartTable({ item, setItemToEdit }) {
     
 
     // --------- EDIT BUTTON -------- //
-    const editCakebiteItem = () => {
-        setItemToEdit(item);
+    const editCakebiteItem = (cakebiteToEdit) => {
+        console.log('Editting itemmmm', cakebiteToEdit);
+
+        Swal.fire({
+            title: "Editing",
+            text: "Edit Foo'!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#04bb99",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, obliterate it from my cart!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+            dispatch({
+                type: 'EDIT_CAKEBITE_IN_CART',
+                payload: cakebiteToEdit
+            });
+              Swal.fire({
+                title: "Obliterated!!",
+                text: "Your item has been obliterated from your cart!",
+                icon: "success"
+              });
+            }
+          }).catch(err => {
+            alert('Error Deleting Item')
+            console.log(err);
+        });
     };
     // --------- END EDIT BUTTON -------- //    
 
@@ -87,7 +112,7 @@ function CartTable({ item, setItemToEdit }) {
                                     <h4>Quantity:</h4> {cakebite.quantity} 
                                     <h4>Price:</h4> ${cakebite.price.toFixed(2)}
                                     </td>
-                                    <button className="btn" onClick={() => editCakebiteItem(cakebite.id)}>Edit</button>
+                                    <button className="btn" onClick={() => editCakebiteItem(index)}>Edit</button>
                                     <button className="btn" onClick={() => deleteButton(index)}>Delete</button>
 
                             </tr>

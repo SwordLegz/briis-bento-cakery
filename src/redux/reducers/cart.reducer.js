@@ -4,6 +4,11 @@ const cartReducer = (state = [], action) => {
     case 'ADD_CAKEBITE_TO_CART':
       // Add new cakebite to the cart
       return [...state, action.payload];
+    // EDIT CAKEBITE IN CART //
+    case 'EDIT_CAKEBITE_IN_CART':
+      const cakebiteToEdit = action.payload;
+      console.log('You tryna EDIT THIS in cart.reducer?:', cakebiteToEdit);
+
 
     case 'REMOVE_FROM_CART':
       // Ensure the action payload is the index to remove

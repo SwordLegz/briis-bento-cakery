@@ -1,3 +1,29 @@
+// ---------- SWALFIRE CONFIRM ORDER BUTTON -------- //
+// Swal.fire({
+//   title: "Send Order?",
+//   text: "You are about to submit your order!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   cancelButtonText: "Wait, don't send order yet!",
+//   confirmButtonText: "Yes, send my order plz!"
+// }).then((result) => {
+//   if (result.isConfirmed) {
+//       Swal.fire({
+//           title: "Thankiezzz!",
+//           text: "If you'd like to make changes to your order, you can do so through your profile!",
+//           imageUrl: "../images/octopus.jpeg",
+//           imageWidth: 400,
+//           imageHeight: 400,
+//           // imageAlt: "Custom image"
+//         });
+//   }
+// });
+
+
+
+
 // // ------------- MOCK STORE CODE?? ------------- //
 
 // import { createStore, combineReducers, applyMiddleware } from 'redux';

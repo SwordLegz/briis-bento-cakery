@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import './CakeBiteDetails.css';
+import Swal from "sweetalert2";
 // import Modal from "../Modal/Modal";
 // import './App.css';
 
@@ -55,12 +56,21 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     const addToCartButton = () => {
         let quantity = getRadioValue();
         let cakebiteToAdd = {flavor_id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
-
-        dispatch({
-            type: 'ADD_ORDER_TO_CART',
-            payload: [cakebiteToAdd, adjustedPrice]
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: `${selectedQuantity} ${cakeBiteItem.flavor} cakebites have been added to your cart!!`,
+            showConfirmButton: false,
+            timer: 2000
+          }).then((result => {
+            dispatch({
+                type: 'ADD_ORDER_TO_CART',
+                payload: [cakebiteToAdd, adjustedPrice]
         })
+    }))
     }
+
+    
     // ---------- END SENDS ITEMS TO CART ---------- //
 
 
