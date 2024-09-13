@@ -11,10 +11,7 @@ const orderReducer = (state= [], action) => {
                 order.id === action.payload.id 
                 ? { ...order, status: 'yay success!'} : order
             );
-            // {
-            //     ...state,
-            //     orderStatus: 'success',
-            // };
+            
         
         case 'PLACE_ORDER_FAILURE':
             return state.map(order =>
@@ -22,11 +19,6 @@ const orderReducer = (state= [], action) => {
                 ? { ...order, status: 'bummer, failed', error: action.payload.error }
                 : order
             );
-            // {
-            //     ...state,
-            //     orderStatus: 'failed',
-            //     error: action.payload,
-            // };
 
             case 'CLEAR_ORDERS':
                 // CLEARS ALL ORDERS //

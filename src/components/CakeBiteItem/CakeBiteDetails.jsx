@@ -4,20 +4,18 @@ import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import './CakeBiteDetails.css';
 import Swal from "sweetalert2";
-// import Modal from "../Modal/Modal";
-// import './App.css';
 
 
 function CakeBiteDetails({getCakeBite, cakeBite}) {
     const history = useHistory();
     const dispatch = useDispatch();
-    let { id } = useParams();
-    let cakeBiteId = Number(id);
-    
-    const [selectedQuantity, setSelectedQuantity] = useState(25);
-    const [adjustedPrice, setAdjustedPrice] = useState(34.99);
     // 1. useSelector to get the shopReducer data
     const shopReducer = useSelector(store => store.shopReducer)
+    const user = useSelector(store => store.user)
+    let { id } = useParams();
+    let cakeBiteId = Number(id);
+    const [selectedQuantity, setSelectedQuantity] = useState(25);
+    const [adjustedPrice, setAdjustedPrice] = useState(34.99);
 
 
     // --------- FIND THE CAKEBITE ITEM BASED ON THE ID ---------//
@@ -29,17 +27,25 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
         const basePrice = 34.99;
         let newPrice;
 
-        if (selectedQuantity === 25) {
-            newPrice = basePrice;
-        } else if (selectedQuantity === 50) {
-            newPrice = basePrice + 24.99;
-        } else if (selectedQuantity === 75) {
-            newPrice = basePrice + 54.98;
-        } else if (selectedQuantity === 100) {
-            newPrice = basePrice + 84.97;
-        } else {
-            newPrice = basePrice;
+        switch (selectedQuantity) {
+            case 25: newPrice = basePrice; break;
+            case 50: newPrice = basePrice + 24.99; break;
+            case 75: newPrice = basePrice + 54.98; break;
+            case 100: newPrice = basePrice + 84.97; break;
+            default: newPrice = basePrice;
         }
+
+        // if (selectedQuantity === 25) {
+        //     newPrice = basePrice;
+        // } else if (selectedQuantity === 50) {
+        //     newPrice = basePrice + 24.99;
+        // } else if (selectedQuantity === 75) {
+        //     newPrice = basePrice + 54.98;
+        // } else if (selectedQuantity === 100) {
+        //     newPrice = basePrice + 84.97;
+        // } else {
+        //     newPrice = basePrice;
+        // }
 
         setAdjustedPrice(newPrice);
     }, [selectedQuantity]);
@@ -54,58 +60,85 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCartButton = () => {
-        let quantity = getRadioValue();
-        let cakebiteToAdd = {flavor_id: cakeBiteItem.id, flavor: cakeBiteItem.flavor, quantity: selectedQuantity, image: cakeBiteItem.image, price: adjustedPrice};
+        // let quantity = getRadioValue();
+        let cakebiteToAdd = {
+            user_id: user.id,
+            flavor_id: cakeBiteItem.id,
+            flavor: cakeBiteItem.flavor,
+            quantity: selectedQuantity,
+            image: cakeBiteItem.image,
+            price: adjustedPrice
+        };
         Swal.fire({
             position: "center",
             icon: "success",
             title: `${selectedQuantity} ${cakeBiteItem.flavor} cakebites have been added to your cart!!`,
             showConfirmButton: false,
             timer: 2000
-          }).then((result => {
+          }).then(() => {
             dispatch({
-                type: 'ADD_ORDER_TO_CART',
-                payload: [cakebiteToAdd, adjustedPrice]
-        })
-    }))
+                type: 'ADD_CAKE_TO_CART',
+                payload: cakebiteToAdd
+            }
+
+                // {
+                // type: 'ADD_ORDER_TO_CART',
+                // payload: [cakebiteToAdd, adjustedPrice]
+        // }
+        );
+    })
     }
 
     
     // ---------- END SENDS ITEMS TO CART ---------- //
 
 
-    // ---------- GO TO CART BUTTON ---------- //
+// ---------- NEW GO TO CART BUTTON ---------- //
     const goToCartButton = () => {
         history.push('/cart');
-        dispatch({
-            type: 'GO_TO_CART',
-            payload: {}
-        });
+    
     }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
-    // ---------- BACK TO SHOP BUTTON ---------- //
+    // ---------- GO TO CART BUTTON ---------- //
+    // const goToCartButton = () => {
+    //     history.push('/cart');
+    //     dispatch({
+    //         type: 'GO_TO_CART',
+    //         payload: {}
+    //     });
+    // }
+    // ---------- END BACK TO SHOP BUTTON ---------- //
+
+// ---------- NEW BACK TO SHOP BUTTON ---------- //
     const backToShopButton = () => {
         history.push('/shop');
-        dispatch({
-            type: 'BACK_TO_SHOP',
-            payload: {}
-        });
     }
+// ---------- END BACK TO SHOP BUTTON ---------- //
+
+
+    // ---------- BACK TO SHOP BUTTON ---------- //
+    // const backToShopButton = () => {
+    //     history.push('/shop');
+    //     dispatch({
+    //         type: 'BACK_TO_SHOP',
+    //         payload: {}
+    //     });
+    // }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- FOR QUANTITY INPUT CHANGES ---------- //
-    const getRadioValue = () => {
-        let ele = document.getElementsByName('method');
-        console.log('radioVALUE in CakeBiteDetails.jsx:', ele)
-        for (let i = 0; i < ele.length; i++) {
-            if (ele[i].checked) {
-            return ele[i].value
-        }}
-        return '';
-    }
+    // const getRadioValue = () => {
+    //     let ele = document.getElementsByName('method');
+    //     console.log('radioVALUE in CakeBiteDetails.jsx:', ele)
+    //     for (let i = 0; i < ele.length; i++) {
+    //         if (ele[i].checked) {
+    //         return ele[i].value
+    //     }}
+    //     return '';
+    // }
     // ---------- END QUANTITY INPUT CHANGES ---------- //
 
 
@@ -117,7 +150,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             <figure>
             <h1>{cakeBiteItem.flavor}</h1>
             <img className="cakebiteImage"
-                 src={cakeBiteItem.image ? cakeBiteItem.image : ""}
+                 src={cakeBiteItem.image || ""}
                  alt={cakeBiteItem.flavor} />
             <br />
             <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
@@ -160,17 +193,21 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                     </figure>
             <figure>
                  <button className="btn"
-                        onClick={addToCartButton}>Add to Cart</button> 
+                        onClick={addToCartButton}>
+                            Add to Cart
+                </button> 
             </figure>
             
             <figure>
-            <button className="btn"
-                    onClick={backToShopButton}>
-                        Back to Shop
-            </button>
+                <button className="btn"
+                        onClick={backToShopButton}>
+                            Back to Shop
+                </button>
             <figure />
-            <button className="btn"
-                    onClick={goToCartButton}>Go To Cart</button>
+                <button className="btn"
+                        onClick={goToCartButton}>
+                            Go To Cart
+                </button>
             </figure>
             
             

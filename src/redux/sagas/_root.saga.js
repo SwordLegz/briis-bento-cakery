@@ -3,7 +3,7 @@ import loginSaga from './login.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import shopSaga from './shop.saga';
-// import cartSaga from './cart.saga';
+import cartSaga from './cart.saga';
 import orderSaga from './orders.saga';
 
 // rootSaga is the primary saga.
@@ -19,7 +19,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     shopSaga(),
-    // cartSaga()
+    cartSaga(),
     orderSaga()
   ]);
 }

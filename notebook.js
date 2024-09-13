@@ -1,3 +1,23 @@
+// Swal.fire({
+//   title: "Delete from cart?",
+//   text: "You are about to delete these from your cart!",
+//   icon: "warning",
+//   showCancelButton: true,
+//   confirmButtonColor: "#3085d6",
+//   cancelButtonColor: "#d33",
+//   cancelButtonText: "Wait, don't delete!",
+//   confirmButtonText: "Yes, delete plz!"
+// }).then((result) => {
+//   if (result.isConfirmed) {
+//       dispatch({
+//           type: 'DELETE_ITEM_FROM_CART',
+//       payload: postData
+//       })
+//   }}).catch(error => {
+//       alert('ERRORRR Deleting from cart in Cart.jsx:', error);
+//     });
+
+
 // ---------- SWALFIRE CONFIRM ORDER BUTTON -------- //
 // Swal.fire({
 //   title: "Send Order?",

@@ -5,26 +5,26 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import axios from "axios";
 
-function CartTable({ item, setItemToEdit }) {
-    const cart = useSelector(store => store.cartReducer);
+function CartTable() {
+    const cart = useSelector(store => store.cartReducer[0]);
     const dispatch = useDispatch();
     const history = useHistory();
 
     // STATE TO STORE TOTAL PRICE //
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
 
     // CALCULATES TOTAL PRICE & UPDATES STATE //
-    const calculateTotal = () => {
-        const newTotal = cart.reduce((total, cakebite) => {
-            return total + cakebite.price;
-        }, 0).toFixed(2);
-        setTotal(newTotal);
-    };
+    // const calculateTotal = () => {
+    //     const newTotal = cart.reduce((total, cakebite) => {
+    //         return total + cakebite.price;
+    //     }, 0).toFixed(2);
+    //     setTotal(newTotal);
+    // };
 
     // RECALCULATES TOTAL WHENEVER CART CHANGES //
-    useEffect(() => {
-        calculateTotal();
-    }, [cart]);
+    // useEffect(() => {
+    //     calculateTotal();
+    // }, [cart]);
 
     // --------- DELETE BUTTON -------- //
     const deleteButton = (cakebite) => {
@@ -40,7 +40,7 @@ function CartTable({ item, setItemToEdit }) {
           }).then((result) => {
             if (result.isConfirmed) {
             dispatch({
-                type: 'REMOVE_FROM_CART',
+                type: 'REMOVE_ITEM_FROM_CART',
                 payload: cakebite
             });
               Swal.fire({
@@ -91,14 +91,14 @@ function CartTable({ item, setItemToEdit }) {
 
     return (
         <div>
-            <table>
+            {/* <table>
                 <thead>
                     <tr>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    {cart.map((cakebite, index) => {
+                    {cart.map((cakebite) => {
                         return (
                             <tr key={cakebite.id}>
                                 <td><img className="cakebiteImage"
@@ -107,20 +107,21 @@ function CartTable({ item, setItemToEdit }) {
                                     <br />
                                 <td><h4>Flavor:</h4> {cakebite.flavor}
                                     <h4>Quantity:</h4> {cakebite.quantity} 
-                                    <h4>Price:</h4> ${cakebite.price.toFixed(2)}
-                                    </td>
-                                    <button className="btn" onClick={() => editCakebiteItem(index)}>Edit</button>
-                                    <button className="btn" onClick={() => deleteButton(index)}>Delete</button>
+                                    {/* <h4>Price:</h4> ${cakebite.price.toFixed(2)} */}
+                                    {/* </td>
+                                    
+                                    <button className="btn" onClick={() => editCakebiteItem(cakebite)}>Edit</button>
+                                    <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button> */}
 
-                            </tr>
+                            {/* </tr>
                         )
                     })}
                 </tbody>
-            </table>
+            </table> */}
 
-            <div className="total">
+            {/* <div className="total">
                 <h2>TOTAL: ${total}</h2>
-            </div>
+            </div> */}
         </div>
     )
 }

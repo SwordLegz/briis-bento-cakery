@@ -3,12 +3,12 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    console.log('YOOKOOSOO LOOK silly goose at /api/orders:', req.body);
+    console.log('YOOKOOSOO silly goose at orders.router:', req.body);
 
     const {
         user_id,
         date,
-        isDone,
+        pending,
         cartItems
     } = req.body;
 
@@ -22,7 +22,7 @@ router.post('/', async (req, res) => {
             VALUES ($1, $2, $3)
             RETURNING id;
             `,
-            [user_id, date, isDone]
+            [user_id, date, pending]
         );
 
         const orderId = orderResult.rows[0].id;
@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
         console.log('good job the order is a SUCCESS!');
     } catch (error) {
         await client.query('ROLLBACK'); //ROLLBACK TRANSACTION ON ERROR //
-        console.log('OH NOOO error processing order:', error);
+        console.log('OH NOOO error processing order in orders.router:', error);
         res.sendStatus(500);
     } finally {
         client.release(); // RELEASE CLIENT BACK TO THE POOL

@@ -20,6 +20,7 @@ function Header() {
     return (
         <div>
             <div>
+                {/* <img className="home-img" src="./images/octopus.jpeg"></img> */}
                 <header className="header">Brii's Bento Cakery
                     
                     

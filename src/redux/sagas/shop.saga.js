@@ -16,21 +16,21 @@ function* fetchCakeBites() {
 function* addCakebiteToCart (action) {
     try {
         const cakebiteToAdd = action.payload[0];
-        yield put({type: 'ADD_CAKEBITE_TO_CART', payload: cakebiteToAdd})
+        yield put({
+            type: 'ADD_CAKEBITE_TO_CART', 
+            payload: cakebiteToAdd
+        })
         console.log('cakebite added to cart in shop.saga:', cakebiteToAdd)
     } catch (error) {
-
+        console.log('BUTTS ya gotsta err:', error)
     }
 }
 
-// function* chrisIsWow (action) {
-//     console.log('MeYAAAAAAAhhhh bitcharoni from shop.saga', action)
-// }
+
 
 function* shopSaga() {
     yield takeLatest('FETCH_CAKEBITES', fetchCakeBites)
     yield takeLatest('ADD_ORDER_TO_CART', addCakebiteToCart)
-    // yield takeLatest('ORDER_IS_SENT', chrisIsWow)
 }
 
 export default shopSaga;

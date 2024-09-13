@@ -11,7 +11,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const shopRouter = require('./routes/shop.router');
 const ordersRouter = require('./routes/orders.router');
-// const cartRouter = require('/routes/cart.router');
+const cartRouter = require('./routes/cart.router');
 // const orderRouter = require('/routes/order.router.js');
 
 // --------- Express Middleware --------- //
@@ -30,7 +30,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/shop', shopRouter);
 app.use('/api/orders', ordersRouter);
-// app.use('/api/cart', cartRouter)
+app.use('/api/cart', cartRouter)
 
 // app.use('/api/order', orderRouter);
 

@@ -1,8 +1,15 @@
 .header {
-    font-family: "pecita";
+    /* font-family: "pecita"; */
+    text-align: center;
+    font-size: xx-large;
 }
 
 @font-face {
     font-family: "Pecita";
     src: url();
+}
+
+.home-img {
+    width: 200px;
+    height: 200px;
 }

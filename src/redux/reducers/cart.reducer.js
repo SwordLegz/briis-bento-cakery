@@ -1,34 +1,49 @@
 
 const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case 'ADD_CAKEBITE_TO_CART':
+    case "SET_CART_ITEMS":
+      return action.payload;
+      // default:
+      //   return state;
+  
+  
+  // switch (action.type)
+  //  {
+    case 'ADD_PENDING_TO_CART':
       // Add new cakebite to the cart
       return [...state, action.payload];
+
     // EDIT CAKEBITE IN CART //
-    case 'EDIT_CAKEBITE_IN_CART':
-      const cakebiteToEdit = action.payload;
-      console.log('You tryna EDIT THIS in cart.reducer?:', cakebiteToEdit);
-
-
+    // case 'EDIT_CAKEBITE_IN_CART':
+    //   const cakebiteToEdit = state.map(item =>
+    //     item.id === action.payload.id ? action.payload : item
+    //   )
+    //   console.log('You tryna EDIT THIS in cart.reducer?:', cakebiteToEdit);
+    //   return cakebiteToEdit;
+      // const cakebiteToEdit = action.payload;
+      
+    // DELETE CAKEBITE IN CART //
     case 'REMOVE_FROM_CART':
+      return state.filter((_, index) => index !== action.payload);
+      // console.log('U tryna delete this er wut?:', )
       // Ensure the action payload is the index to remove
-      const indexToRemove = action.payload;
+      // const indexToRemove = action.payload;
 
       // Debugging log
-      console.log('Attempting to remove item at index:', indexToRemove);
-      console.log('Current cart items:', state);
+      // console.log('Attempting to remove item at index:', indexToRemove);
+      // console.log('Current cart items:', state);
       
-      // Validate index
-      if (indexToRemove < 0 || indexToRemove >= state.length) {
-        console.error('Invalid index:', indexToRemove);
-        return state; // Return unchanged state if index is invalid
-      }
+      // // Validate index
+      // if (indexToRemove < 0 || indexToRemove >= state.length) {
+      //   console.error('Invalid index:', indexToRemove);
+      //   return state; // Return unchanged state if index is invalid
+      // }
 
-      // Create a new array excluding the item at the specified index
-      return [
-        ...state.slice(0, indexToRemove),
-        ...state.slice(indexToRemove + 1)
-      ];
+      // // Create a new array excluding the item at the specified index
+      // return [
+      //   ...state.slice(0, indexToRemove),
+      //   ...state.slice(indexToRemove + 1)
+      // ];
 
     case 'EMPTY_CART':
       // Empty the cart

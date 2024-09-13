@@ -26,13 +26,13 @@ function* handlePlaceOrder(action) {
 }
 
 
-function* editCakeBiteItem(action) {
-    try {
-        console.log('oopsies');
-    } catch (error) {
+// function* editCakeBiteItem(action) {
+//     try {
+//         console.log('oopsies');
+//     } catch (error) {
 
-    }
-}
+//     }
+// }
 
 function* orderSaga() {
     yield takeLatest('ORDER_IS_SENT', handlePlaceOrder)
