@@ -46,13 +46,13 @@ router.get('/', async (req,res) => {
 // --------- NEW POST CART ROUTE --------- //
 router.post('/', async (req, res) => {
     console.log(req.body)
-    const { user_id, flavor_id, flavor, quantity } = req.body;
+    const { user_id, flavor_id, flavor, image, quantity, price } = req.body;
 
     try {
         await pool.query(`
-            INSERT INTO "pending_cart" ("user_id", "flavor_id", "flavor", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
-             VALUES ($1, $2, $3, null, null, null, null, $4);`,
-            [user_id, flavor_id, flavor, quantity]
+            INSERT INTO "pending_cart" ("user_id", "flavor_id", "flavor", "image", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity", "price")
+             VALUES ($1, $2, $3, $4, null, null, null, null, $5, $6);`,
+            [user_id, flavor_id, flavor, image, quantity, price]
         );
         res.sendStatus(201);
     } catch (error) {
@@ -98,12 +98,12 @@ router.post('/', async (req, res) => {
 //     }
 // });
 
-// --------- NEW DELETE ORDER ROUTE --------- //
-router.delete('/:id', async (req, res) => {
-    const id = req.query.id;
+// --------- CORRECTLY WORKING DELETE ORDER ROUTE --------- //
+router.delete('/pending/:id', async (req, res) => {
+    const id = req.params.id;
     console.log('id in cart.router is:', id)
     try {
-        await pool.query(`DELETE FROM "pending_cart" WHERE id= $1;`, [req.params.id]);
+        await pool.query(`DELETE FROM "pending_cart" WHERE "id" = $1;`, [id]);
         res.sendStatus(200);
     } catch (error) {
         console.log('hotDOG deleting didnt work in cart.router!!:', error);
@@ -112,34 +112,41 @@ router.delete('/:id', async (req, res) => {
 })
 
 
-// --------- DELETE ORDER ROUTE --------- //
-
-// router.delete('/delete/:id', (req,res) => {
-//     pool.query('DELETE FROM "orders" WHERE id=$1', [req.params.id])
-//     .then((result) => {
-//         res.sendStatus(200);
-//     }).catch((error) => {
-//         console.log('YEEHAW ERROR DELETE /api/order', error);
-//         res.sendStatus(500);
-//     })
-// });
-
 // ---------- EDIT PUT ROUTE ----------- //
 
-router.put('/edit/:id', (req, res) => {
-    console.log('BEEP BEEP your PUT cart.router for /api/cart/edit:id requestsss:');
-    const sqlText = `
-    UPDATE "orders"
-    set "quantity" =$1;
-    `
-    const sqlValues = [req.body.id, req.body.quantity, req.params.id]
-    pool.query(sqlText, sqlValues)
-    .then(() => {
+router.put('/pending/:id', async (req, res) => {
+    
+    const id = req.params.id;
+    const { quantity } = req.body;
+    console.log('BEEP BEEP your EDIT/PUT cart.router for /api/edit/:id requestsss:', id, quantity);
+    
+    try {
+        const result = await pool.query(`
+            UPDATE "pending_cart"
+            SET "quantity" = $1
+            WHERE "id" = $2;
+            `, [quantity, id]);
+
+        if (result.rowCount === 0) {
+            return res.status(404).json({ message: 'Sowwy, no edit' });
+        }
         res.sendStatus(200);
-    }).catch((error) => {
-        console.log('WHOAA Error for ur PUT in cart.router:', error);
+    } catch (error) {
+        console.log('No can doozies for edit in cart.router:', error);
         res.sendStatus(500);
-    })
+    }
+    // const sqlText = `
+    // UPDATE "orders"
+    // set "quantity" =$1;
+    // `
+    // const sqlValues = [req.body.id, req.body.quantity, req.params.id]
+    // pool.query(sqlText, sqlValues)
+    // .then(() => {
+    //     res.sendStatus(200);
+    // }).catch((error) => {
+    //     console.log('WHOAA Error for ur PUT in cart.router:', error);
+    //     res.sendStatus(500);
+    // })
 });
 
 module.exports = router;

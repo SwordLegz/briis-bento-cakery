@@ -15,27 +15,40 @@ function Cart() {
     const [total, setTotal] = useState(0);
     // const cart = useSelector(store => store.cartReducer[0]);
     // USE SELECTOR GETS CART REDUCER DATA
-    const cartReducer = useSelector(store => store.cartReducer);
+    // const cartReducer = useSelector(store => store.cartReducer);
     const cartItems = useSelector(store => store.cartReducer);
     const specificDate = new Date();
     // const formattedDate = specificDate.toISOString().split('T')[0];
-
+console.log('Current cart state in cart.jsx:', useSelector(store => store.cartReducer));
     // let { id } = useParams();
     // let cakeBiteId = Number(id);
     // const [total, setTotal] = useState(0);
     console.log('Cart items in Cart.jsx:', cartItems);
 
     const calculateTotal = () => {
-        
-        const newTotal = cartItems.reduce((total, cakebite) => {
-            return total + cakebite.price * cakebite.quantity;
+        if (cartItems.length > 0) {
+        const newTotal = cartItems[0].reduce((total, cakebite) => {
+            const price = cakebite.price;
+            console.log('price', price)
+            return total + price;
         }, 0).toFixed(2);
         setTotal(newTotal);
+    }
+        console.log(total)
+
+        // const newTotal = cartItems.reduce((total, cakebite) => {
+        //     return total + cakebite.price * cakebite.quantity;
+        // }, 0).toFixed(2);
+        // setTotal(newTotal);
     };
 
     useEffect(() => {
         calculateTotal();
     }, [cartItems]);
+
+    useEffect(()=>{
+        dispatch({type: 'POPULATE_CART'})
+    },[])
 
     const formatDate = (date) => {
         return date.toISOString().split('T')[0];
@@ -75,37 +88,7 @@ function Cart() {
         });
     }
 
-    // const deleteButton = ()  => {
-    //     let cakeBiteToDelete = {flavor_id: cartItem.id, flavor: cartItem.flavor, image: cartItem.image}
-    
-    //     Swal.fire({
-    //         title: "Delete from cart?",
-    //         text: "ou are about to delete these from your cart!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         cancelButtonText: "Wait, don't delete!",
-    //         confirmButtonText: "Yes, delete plz!"
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             dispatch({
-    //                 type: 'DELETE_ITEM_FROM_CART',
-    //             payload: postData
-    //             });
-    //             // Swal.fire({
-    //             //     title: "Thankiezzz!",
-    //             //     text: "If you'd like to make changes to your order, you can do so through your profile!",
-    //             //     imageUrl: "../images/octopus.jpeg",
-    //             //     imageWidth: 400,
-    //             //     imageHeight: 400,
-    //             //   });
-    //             //   history.push('/');
-    //         }
-    //       }).catch(error => {
-    //         alert('ERRORRR sending ORDER in Cart.jsx:', error);
-    //       });
-    // }
+
     
 
     const handleCart = () => {
@@ -165,7 +148,7 @@ function Cart() {
                 <br />
                 {/* {user.last_name} */}
                 <br />
-                {/* {user.username} */}the 
+                {/* {user.username} */}
                 <br />
                 </figure>
             </div>
@@ -182,25 +165,24 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cartItems === undefined ? '' : cartItems.map((cakebite) => {
-                        return (
-                            <tr key={cakebite.id}>
-                                <td><img className="cakebiteImage"
-                                    src={cakebite.image ? cakebite.image : ""}
-                                    alt={cakebite.image} /></td>
-                                    <br />
-                                <td><h4>Flavor:</h4> {cakebite.flavor}
-                                    <h4>Quantity:</h4> {cakebite.quantity} 
-                                    {/* <h4>Price:</h4> ${cakebite.price.toFixed(2)} */}
+                            {cartItems && cartItems.length > 0 ? cartItems[0].map((cakebite) => (
+                                <tr key={cakebite.id}>
+                                    <td>
+                                        <img className="cakebiteImage"
+                                            src={cakebite.image || ""}
+                                            alt={cakebite.flavor} />
                                     </td>
-                                    
-                                    {/* <button className="btn" onClick={() => editCakebiteItem(cakebite)}>Edit</button> */}
-                                    <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button>
-
-                            </tr>
-                        )
-                    })}
-                </tbody>
+                                    <td>
+                                        <h4>Flavor:</h4> {cakebite.flavor}
+                                        <h4>Quantity:</h4> {cakebite.quantity}
+                                        <h4>Price:</h4> ${parseFloat(cakebite.price).toFixed(2)}
+                                    </td>
+                                    <td>
+                                        <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button>
+                                    </td>
+                                </tr>
+                            )) : <tr><td colSpan="3">No items in the cart.</td></tr>}
+                        </tbody>
             </table>
 
             </div>
@@ -214,12 +196,43 @@ function Cart() {
             </div>
             </figure>
 
-            {/* <div className="total">
-                <h2>TOTAL: ${total}</h2>
-            </div> */}
-
         </div>
     )
 }
 
 export default Cart;
+
+
+// ---------- OLD DELETE FUNCTION ----------- //
+
+    // const deleteButton = ()  => {
+    //     let cakeBiteToDelete = {flavor_id: cartItem.id, flavor: cartItem.flavor, image: cartItem.image}
+    
+    //     Swal.fire({
+    //         title: "Delete from cart?",
+    //         text: "ou are about to delete these from your cart!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#3085d6",
+    //         cancelButtonColor: "#d33",
+    //         cancelButtonText: "Wait, don't delete!",
+    //         confirmButtonText: "Yes, delete plz!"
+    //       }).then((result) => {
+    //         if (result.isConfirmed) {
+    //             dispatch({
+    //                 type: 'DELETE_ITEM_FROM_CART',
+    //             payload: postData
+    //             });
+    //             // Swal.fire({
+    //             //     title: "Thankiezzz!",
+    //             //     text: "If you'd like to make changes to your order, you can do so through your profile!",
+    //             //     imageUrl: "../images/octopus.jpeg",
+    //             //     imageWidth: 400,
+    //             //     imageHeight: 400,
+    //             //   });
+    //             //   history.push('/');
+    //         }
+    //       }).catch(error => {
+    //         alert('ERRORRR sending ORDER in Cart.jsx:', error);
+    //       });
+    // }

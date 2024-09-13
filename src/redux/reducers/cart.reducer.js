@@ -3,12 +3,7 @@ const cartReducer = (state = [], action) => {
   switch (action.type) {
     case "SET_CART_ITEMS":
       return action.payload;
-      // default:
-      //   return state;
-  
-  
-  // switch (action.type)
-  //  {
+      
     case 'ADD_PENDING_TO_CART':
       // Add new cakebite to the cart
       return [action.payload];

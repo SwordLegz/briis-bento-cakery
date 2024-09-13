@@ -4,6 +4,7 @@ import axios from 'axios';
 function* handlePlaceOrder(action) {
     try {
         const orderData = action.payload;
+        console.log('OrderData in orders.saga:', orderData);
         const orderResponse = yield axios.post('/api/orders', orderData);
         console.log('UR ORDER was a sucCESS from orders.saga:', orderResponse);
 
@@ -11,8 +12,10 @@ function* handlePlaceOrder(action) {
             type: 'SET_ORDER',
             payload: orderResponse.data
         })
+        const userId = orderData.user_id;
+        yield axios.delete(`/api/cart/pending/${userId}`);
         yield put({
-            type: 'EMPTY_CART'
+            type: 'EMPTY_CART',
         })
         yield put({
             type: 'CLEAR_CART_TOTAL'

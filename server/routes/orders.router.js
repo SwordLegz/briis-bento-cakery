@@ -29,8 +29,8 @@ router.post('/', async (req, res) => {
         const orderId = orderResult.rows[0].id;
 
         // INSERT ORDER ITEMS //
-        const insertItemsPromises = cartItems.map(cakebite => {
-            const { orderId, flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity } = cakebite;
+        const insertItemsPromises = cartItems[0].map(cakebite => {
+            const { flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity } = cakebite;
             return client.query(`
                 INSERT INTO "order_items" ("order_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
                 VALUES ($1, $2, $3, $4, $5, $6, $7);
@@ -39,7 +39,25 @@ router.post('/', async (req, res) => {
             );
         });
 
-        await Promise.all(insertItemsPromises);
+      
+
+
+
+
+        // const userId = req.body.user.id;
+
+        // const clearPendingResult = await client.query(`
+        //     DELETE FROM "pending_cart" WHERE id= $1;
+        //     `,
+        //     [userId]
+        // );
+
+        await Promise.all(insertItemsPromises );
+        const pendingText = `
+        DELETE FROM "pending_cart" WHERE "user_id" = $1;
+        `
+        await client.query(pendingText, [user_id])
+        
         await client.query('COMMIT'); // COMMIT TRANSACTION
         res.sendStatus(201); // ORDER CREATED SUCCESSFULLY //
         console.log('good job the order is a SUCCESS!');

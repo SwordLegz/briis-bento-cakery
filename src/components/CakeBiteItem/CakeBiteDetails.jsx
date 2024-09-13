@@ -67,8 +67,9 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             flavor: cakeBiteItem.flavor,
             quantity: selectedQuantity,
             image: cakeBiteItem.image,
-            price: adjustedPrice
+            price: adjustedPrice.toFixed(2)
         };
+        console.log('Sending to CART from cakebitedetails.jsx:', cakebiteToAdd);
         Swal.fire({
             position: "center",
             icon: "success",
@@ -101,32 +102,12 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
-    // ---------- GO TO CART BUTTON ---------- //
-    // const goToCartButton = () => {
-    //     history.push('/cart');
-    //     dispatch({
-    //         type: 'GO_TO_CART',
-    //         payload: {}
-    //     });
-    // }
-    // ---------- END BACK TO SHOP BUTTON ---------- //
-
 // ---------- NEW BACK TO SHOP BUTTON ---------- //
     const backToShopButton = () => {
         history.push('/shop');
     }
 // ---------- END BACK TO SHOP BUTTON ---------- //
 
-
-    // ---------- BACK TO SHOP BUTTON ---------- //
-    // const backToShopButton = () => {
-    //     history.push('/shop');
-    //     dispatch({
-    //         type: 'BACK_TO_SHOP',
-    //         payload: {}
-    //     });
-    // }
-    // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- FOR QUANTITY INPUT CHANGES ---------- //
@@ -154,7 +135,6 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                  alt={cakeBiteItem.flavor} />
             <br />
             <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
-            {/* <h3>Description:</h3> */}
             <p>{cakeBiteItem.description}</p>
             </figure>
 

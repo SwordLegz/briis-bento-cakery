@@ -31,12 +31,24 @@ function* handleCart(action) {
     }
 } 
 
+function* populateCart(action) {
+    try {
+        const pendingCartItems = yield axios.get('/api/cart/pending')
+        yield put({
+            type: 'ADD_PENDING_TO_CART',
+            payload: pendingCartItems.data
+        })
+    } catch (error){
+        
+    }
+}
+
 // DELETES ITEM FROM CART //
 function* handleDelete(action) {
     try {
-        yield axios.delete(`/api/cart/${action.payload}`);
+        yield axios.delete(`/api/cart/pending/${action.payload}`);
         yield put({
-            type: 'FETCH_CART'
+            type: 'POPULATE_CART'
         });
     } catch (error) {
         console.log('OohWhoops handleDelete in cart.saga no good:', error);
@@ -58,6 +70,7 @@ function* handlePlaceOrder(action) {
 
 
 function* cartSaga() {
+    yield takeLatest('POPULATE_CART', populateCart)
     yield takeLatest('FETCH_CART', fetchCartItems)
     yield takeEvery('ADD_CAKE_TO_CART', handleCart)
     yield takeEvery('REMOVE_ITEM_FROM_CART', handleDelete)
