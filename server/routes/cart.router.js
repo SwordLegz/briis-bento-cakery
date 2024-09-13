@@ -100,9 +100,10 @@ router.post('/', async (req, res) => {
 
 // --------- NEW DELETE ORDER ROUTE --------- //
 router.delete('/:id', async (req, res) => {
-    const id = req.params.id;
+    const id = req.query.id;
+    console.log('id in cart.router is:', id)
     try {
-        await pool.query(`DELETE FROM "pending_cart" WHERE id=$1`, [id]);
+        await pool.query(`DELETE FROM "pending_cart" WHERE id= $1;`, [req.params.id]);
         res.sendStatus(200);
     } catch (error) {
         console.log('hotDOG deleting didnt work in cart.router!!:', error);
@@ -113,15 +114,15 @@ router.delete('/:id', async (req, res) => {
 
 // --------- DELETE ORDER ROUTE --------- //
 
-router.delete('/delete/:id', (req,res) => {
-    pool.query('DELETE FROM "orders" WHERE id=$1', [req.params.id])
-    .then((result) => {
-        res.sendStatus(200);
-    }).catch((error) => {
-        console.log('YEEHAW ERROR DELETE /api/order', error);
-        res.sendStatus(500);
-    })
-});
+// router.delete('/delete/:id', (req,res) => {
+//     pool.query('DELETE FROM "orders" WHERE id=$1', [req.params.id])
+//     .then((result) => {
+//         res.sendStatus(200);
+//     }).catch((error) => {
+//         console.log('YEEHAW ERROR DELETE /api/order', error);
+//         res.sendStatus(500);
+//     })
+// });
 
 // ---------- EDIT PUT ROUTE ----------- //
 

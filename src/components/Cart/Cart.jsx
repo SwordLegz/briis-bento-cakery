@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import CartTable from "./CartTable";
+// import CartTable from "./CartTable";
 import { useState } from "react";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
@@ -12,26 +12,34 @@ function Cart() {
     const user = useSelector(store => store.user);
     const history = useHistory();
     const dispatch = useDispatch();
-    const cart = useSelector(store => store.cartReducer[0]);
+    const [total, setTotal] = useState(0);
+    // const cart = useSelector(store => store.cartReducer[0]);
     // USE SELECTOR GETS CART REDUCER DATA
-    // const cartReducer = useSelector(store => store.cartReducer);
+    const cartReducer = useSelector(store => store.cartReducer);
     const cartItems = useSelector(store => store.cartReducer);
-    // const formattedDate = specificDate.toISOString().split('T')[0];
     const specificDate = new Date();
+    // const formattedDate = specificDate.toISOString().split('T')[0];
+
     // let { id } = useParams();
     // let cakeBiteId = Number(id);
-    const [total, setTotal] = useState(0);
+    // const [total, setTotal] = useState(0);
+    console.log('Cart items in Cart.jsx:', cartItems);
 
     const calculateTotal = () => {
+        
         const newTotal = cartItems.reduce((total, cakebite) => {
-            return total + cakebite.price;
+            return total + cakebite.price * cakebite.quantity;
         }, 0).toFixed(2);
         setTotal(newTotal);
     };
 
     useEffect(() => {
         calculateTotal();
-    }, [cart]);
+    }, [cartItems]);
+
+    const formatDate = (date) => {
+        return date.toISOString().split('T')[0];
+    };
 
     // --------- FIND THE CART ITEM BASED ON THE ID ---------//
     // let cartItem = cartReducer.find(item => item.id === cakeBiteId) || {};
@@ -39,7 +47,7 @@ function Cart() {
 
     // --------- DELETE BUTTON --------- //
 
-    const deleteButton = (cakebite) => {
+    const deleteButton = (cakebiteId) => {
 
         Swal.fire({
             title: "You're about to obliterate this item from your cart!!",
@@ -53,7 +61,7 @@ function Cart() {
             if (result.isConfirmed) {
             dispatch({
                 type: 'REMOVE_ITEM_FROM_CART',
-                payload: cakebite
+                payload: cakebiteId
             });
               Swal.fire({
                 title: "Obliterated!!",
@@ -104,7 +112,7 @@ function Cart() {
 
         // THIS IS THE DATA BEING SENT TO THE DATABASE //
         const postData = {
-            date: specificDate,
+            date: formatDate(specificDate),
             user_id: user.id,
             pending: false,
             cartItems: cartItems,
@@ -157,13 +165,13 @@ function Cart() {
                 <br />
                 {/* {user.last_name} */}
                 <br />
-                {/* {user.username} */}
+                {/* {user.username} */}the 
                 <br />
                 </figure>
             </div>
             <figure>
             <div>
-                {/* <CartTable onDelete={deleteButton} /> */}
+                {/* <CartTable  /> */}
                 <div className="total">
                 <h2>TOTAL: ${total}</h2>
             </div>
@@ -174,7 +182,7 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cart===undefined ? '' : cart.map((cakebite) => {
+                    {cartItems === undefined ? '' : cartItems.map((cakebite) => {
                         return (
                             <tr key={cakebite.id}>
                                 <td><img className="cakebiteImage"
@@ -186,7 +194,7 @@ function Cart() {
                                     {/* <h4>Price:</h4> ${cakebite.price.toFixed(2)} */}
                                     </td>
                                     
-                                    <button className="btn" onClick={() => editCakebiteItem(cakebite)}>Edit</button>
+                                    {/* <button className="btn" onClick={() => editCakebiteItem(cakebite)}>Edit</button> */}
                                     <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button>
 
                             </tr>
@@ -206,7 +214,10 @@ function Cart() {
             </div>
             </figure>
 
-            
+            {/* <div className="total">
+                <h2>TOTAL: ${total}</h2>
+            </div> */}
+
         </div>
     )
 }

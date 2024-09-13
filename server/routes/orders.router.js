@@ -11,6 +11,7 @@ router.post('/', async (req, res) => {
         pending,
         cartItems
     } = req.body;
+    console.log('CART items in orderReducer:', cartItems);
 
     const client = await pool.connect();
     
@@ -29,7 +30,7 @@ router.post('/', async (req, res) => {
 
         // INSERT ORDER ITEMS //
         const insertItemsPromises = cartItems.map(cakebite => {
-            const { flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity } = cakebite;
+            const { orderId, flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity } = cakebite;
             return client.query(`
                 INSERT INTO "order_items" ("order_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
                 VALUES ($1, $2, $3, $4, $5, $6, $7);
