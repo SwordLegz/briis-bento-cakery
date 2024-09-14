@@ -39,25 +39,12 @@ router.post('/', async (req, res) => {
             );
         });
 
-      
-
-
-
-
-        // const userId = req.body.user.id;
-
-        // const clearPendingResult = await client.query(`
-        //     DELETE FROM "pending_cart" WHERE id= $1;
-        //     `,
-        //     [userId]
-        // );
-
         await Promise.all(insertItemsPromises );
         const pendingText = `
         DELETE FROM "pending_cart" WHERE "user_id" = $1;
         `
         await client.query(pendingText, [user_id])
-        
+
         await client.query('COMMIT'); // COMMIT TRANSACTION
         res.sendStatus(201); // ORDER CREATED SUCCESSFULLY //
         console.log('good job the order is a SUCCESS!');

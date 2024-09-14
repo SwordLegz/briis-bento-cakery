@@ -35,18 +35,6 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
             default: newPrice = basePrice;
         }
 
-        // if (selectedQuantity === 25) {
-        //     newPrice = basePrice;
-        // } else if (selectedQuantity === 50) {
-        //     newPrice = basePrice + 24.99;
-        // } else if (selectedQuantity === 75) {
-        //     newPrice = basePrice + 54.98;
-        // } else if (selectedQuantity === 100) {
-        //     newPrice = basePrice + 84.97;
-        // } else {
-        //     newPrice = basePrice;
-        // }
-
         setAdjustedPrice(newPrice);
     }, [selectedQuantity]);
 
@@ -81,20 +69,13 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                 type: 'ADD_CAKE_TO_CART',
                 payload: cakebiteToAdd
             }
-
-                // {
-                // type: 'ADD_ORDER_TO_CART',
-                // payload: [cakebiteToAdd, adjustedPrice]
-        // }
         );
     })
     }
-
-    
     // ---------- END SENDS ITEMS TO CART ---------- //
 
 
-// ---------- NEW GO TO CART BUTTON ---------- //
+    // ---------- NEW GO TO CART BUTTON ---------- //
     const goToCartButton = () => {
         history.push('/cart');
     
@@ -102,29 +83,14 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
-// ---------- NEW BACK TO SHOP BUTTON ---------- //
+    // ---------- NEW BACK TO SHOP BUTTON ---------- //
     const backToShopButton = () => {
         history.push('/shop');
     }
-// ---------- END BACK TO SHOP BUTTON ---------- //
-
-
-
-    // ---------- FOR QUANTITY INPUT CHANGES ---------- //
-    // const getRadioValue = () => {
-    //     let ele = document.getElementsByName('method');
-    //     console.log('radioVALUE in CakeBiteDetails.jsx:', ele)
-    //     for (let i = 0; i < ele.length; i++) {
-    //         if (ele[i].checked) {
-    //         return ele[i].value
-    //     }}
-    //     return '';
-    // }
-    // ---------- END QUANTITY INPUT CHANGES ---------- //
+    // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- RETURN THE STUFF---------- //
-
     return (
         <>
         <div>
@@ -200,30 +166,3 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 export default CakeBiteDetails;
 
 // -------------- OLD CODE, MIGHT WORK LATER?? -------------- //
-
-
-    // ---------- REMOVE FROM CART?? ---------- //
-
-     // const removeFromCart = () => {
-    //     let cartTotaltoRemove = cakeBiteItem.flavor;
-    //     let cakebiteToRemove = cakeBiteItem.id;
-
-    //     dispatch({
-    //         type: 'REMOVE_CART_TOTAL',
-    //         payload: cartTotaltoRemove
-    //     })
-    //     dispatch({
-    //         type: 'REMOVE_FROM_CART',
-    //         payload: cakebiteToRemove
-    //     })
-    //     setButtonDecision(true);
-    // }
-
-    // }
-    // ---------- END QUANTITY INPUT CHANGES ---------- //
-
-    // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
-    
-        
-    // }
-    // }

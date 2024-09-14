@@ -13,16 +13,12 @@ function Cart() {
     const history = useHistory();
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
-    // const cart = useSelector(store => store.cartReducer[0]);
     // USE SELECTOR GETS CART REDUCER DATA
-    // const cartReducer = useSelector(store => store.cartReducer);
+    // --------- FIND THE CART ITEM BASED ON THE ID ---------//
+
     const cartItems = useSelector(store => store.cartReducer);
     const specificDate = new Date();
-    // const formattedDate = specificDate.toISOString().split('T')[0];
 console.log('Current cart state in cart.jsx:', useSelector(store => store.cartReducer));
-    // let { id } = useParams();
-    // let cakeBiteId = Number(id);
-    // const [total, setTotal] = useState(0);
     console.log('Cart items in Cart.jsx:', cartItems);
 
     const calculateTotal = () => {
@@ -33,13 +29,7 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
             return total + price;
         }, 0).toFixed(2);
         setTotal(newTotal);
-    }
-        console.log(total)
-
-        // const newTotal = cartItems.reduce((total, cakebite) => {
-        //     return total + cakebite.price * cakebite.quantity;
-        // }, 0).toFixed(2);
-        // setTotal(newTotal);
+        }
     };
 
     useEffect(() => {
@@ -53,10 +43,6 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
     const formatDate = (date) => {
         return date.toISOString().split('T')[0];
     };
-
-    // --------- FIND THE CART ITEM BASED ON THE ID ---------//
-    // let cartItem = cartReducer.find(item => item.id === cakeBiteId) || {};
-
 
     // --------- DELETE BUTTON --------- //
 
@@ -90,6 +76,7 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
 
 
     
+    // --------- SENDS ORDER TO ORDERS/ORDER_ITEMS DB ---------//
 
     const handleCart = () => {
 
@@ -131,8 +118,6 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
             alert('ERRORRR sending ORDER in Cart.jsx:', error);
           });
 
-    
-
         
     }
 
@@ -154,7 +139,6 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
             </div>
             <figure>
             <div>
-                {/* <CartTable  /> */}
                 <div className="total">
                 <h2>TOTAL: ${total}</h2>
             </div>
@@ -204,35 +188,3 @@ export default Cart;
 
 
 // ---------- OLD DELETE FUNCTION ----------- //
-
-    // const deleteButton = ()  => {
-    //     let cakeBiteToDelete = {flavor_id: cartItem.id, flavor: cartItem.flavor, image: cartItem.image}
-    
-    //     Swal.fire({
-    //         title: "Delete from cart?",
-    //         text: "ou are about to delete these from your cart!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#3085d6",
-    //         cancelButtonColor: "#d33",
-    //         cancelButtonText: "Wait, don't delete!",
-    //         confirmButtonText: "Yes, delete plz!"
-    //       }).then((result) => {
-    //         if (result.isConfirmed) {
-    //             dispatch({
-    //                 type: 'DELETE_ITEM_FROM_CART',
-    //             payload: postData
-    //             });
-    //             // Swal.fire({
-    //             //     title: "Thankiezzz!",
-    //             //     text: "If you'd like to make changes to your order, you can do so through your profile!",
-    //             //     imageUrl: "../images/octopus.jpeg",
-    //             //     imageWidth: 400,
-    //             //     imageHeight: 400,
-    //             //   });
-    //             //   history.push('/');
-    //         }
-    //       }).catch(error => {
-    //         alert('ERRORRR sending ORDER in Cart.jsx:', error);
-    //       });
-    // }

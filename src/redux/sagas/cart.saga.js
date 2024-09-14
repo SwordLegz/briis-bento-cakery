@@ -1,9 +1,8 @@
-// ------ CURRENTLY UNSED BUMVILLE ----- //
 
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-
+// GETS ITEMS IN CART //
 function* fetchCartItems() {
     try {
         const cartItems = yield axios.get('/api/cart')
@@ -30,7 +29,7 @@ function* handleCart(action) {
         console.log('Oopiezz was a prob in cart.saga:', error);
     }
 } 
-
+// LOADS ITEMS BACK IN CART AFTER USER LOGS OUT AND BACK IN //
 function* populateCart(action) {
     try {
         const pendingCartItems = yield axios.get('/api/cart/pending')
@@ -43,7 +42,7 @@ function* populateCart(action) {
     }
 }
 
-// DELETES ITEM FROM CART //
+// -------- DELETES ITEM FROM CART -------- //
 function* handleDelete(action) {
     try {
         yield axios.delete(`/api/cart/pending/${action.payload}`);
@@ -55,7 +54,7 @@ function* handleDelete(action) {
     }
 }
 
-// PLACE ORDER //
+// -------- PLACE ORDER -------- //
 function* handlePlaceOrder(action) {
     try {
         yield axios.post('/api/orders', action.payload);
@@ -66,7 +65,6 @@ function* handlePlaceOrder(action) {
         console.log('NoNoNoN bad handlePlaceOrder in cart.saga:', error)
     }
 }
-
 
 
 function* cartSaga() {

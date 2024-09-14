@@ -1,6 +1,5 @@
 
-
-// Reducer
+// ORDER REDUCER //
 const orderReducer = (state= [], action) => {
     switch (action.type) {
         case 'PLACE_ORDER_REQUEST':
