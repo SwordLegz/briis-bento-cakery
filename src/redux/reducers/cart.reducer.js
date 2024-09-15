@@ -1,13 +1,13 @@
 
 const cartReducer = (state = [], action) => {
   switch (action.type) {
-    case "SET_CART_ITEMS":
+    case 'SET_CART_ITEMS':
       return action.payload;
 
     // -------- ADD CAKEBITE TO PENDING CART -------- //
     case 'ADD_PENDING_TO_CART':
       // Add new cakebite to the cart
-      return [...state, action.payload];
+      return action.payload;
 
     // -------- EDIT CAKEBITE IN CART -------- //
     case 'EDIT_ITEM':

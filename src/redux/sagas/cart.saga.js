@@ -35,7 +35,7 @@ function* handleCart(action) {
 // LOADS ITEMS BACK IN CART AFTER USER LOGS OUT AND BACK IN //
 function* populateCart(action) {
     try {
-        const pendingCartItems = yield axios.get('/api/cart/pending')
+        const pendingCartItems = yield axios.get('/api/cart/pending', action.payload)
         yield put({
             type: 'ADD_PENDING_TO_CART',
             payload: pendingCartItems.data
@@ -56,7 +56,7 @@ function* handleEdit(action) {
          const cartItems = yield axios.get('/api/cart/pending')
          console.log('Fetched updated cart items:', cartItems.data);
          yield put({
-             type: 'SET_CART_ITEM',
+             type: 'SET_CART_ITEMS',
              payload: cartItems.data
          });
     } catch (error) {
@@ -72,7 +72,7 @@ function* handleDelete(action) {
     try {
         yield axios.delete(`/api/cart/pending/${action.payload}`);
         yield put({
-            type: 'POPULATE_CART'
+            type: 'SET_CART_ITEMS'
         });
     } catch (error) {
         console.log('OohWhoops handleDelete in cart.saga no good:', error);

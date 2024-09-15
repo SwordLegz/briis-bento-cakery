@@ -17,6 +17,9 @@ function Cart() {
 
     // ------ USE SELECTOR FINDS CART REDUCER DATA BASED ON THE ID ------//
     const cartItems = useSelector(store => store.cartReducer);
+    cartItems.sort(function(a, b) { 
+        return a.id - b.id  ||  a.name.localeCompare(b.name);
+      });
     const specificDate = new Date();
     console.log('Cart items in Cart.jsx:', cartItems);
 
@@ -41,7 +44,7 @@ function Cart() {
     // --------- CALCULATES TOTAL CART BASED ON QUANTITIES SELECTED --------- //
     const calculateTotal = () => {
         if (cartItems.length > 0) {
-        const newTotal = cartItems[0].reduce((total, cakebite) => {
+        const newTotal = cartItems.reduce((total, cakebite) => {
             const price = cakebite.price;
             console.log('price', price)
             return total + price;
@@ -131,6 +134,7 @@ function Cart() {
     
     // --------- SENDS ORDER TO ORDERS/ORDER_ITEMS DB ---------//
     const handleCart = () => {
+
         // THIS IS THE DATA BEING SENT TO THE DATABASE //
         const postData = {
             date: formatDate(specificDate),
@@ -199,7 +203,7 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                            {cartItems && cartItems.length > 0 ? cartItems[0].map((cakebite) => (
+                            {cartItems && cartItems.length > 0 ? cartItems.map((cakebite) => (
                                 <tr key={cakebite.id}>
                                     <td>
                                         <img className="cakebiteImage"
