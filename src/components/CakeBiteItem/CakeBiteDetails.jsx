@@ -6,20 +6,20 @@ import './CakeBiteDetails.css';
 import Swal from "sweetalert2";
 
 
-function CakeBiteDetails({getCakeBite, cakeBite}) {
+function CakeBiteDetails({ cakeBite, onClose}) {
     const history = useHistory();
     const dispatch = useDispatch();
     // 1. useSelector to get the shopReducer data
-    const shopReducer = useSelector(store => store.shopReducer)
+    // const shopReducer = useSelector(store => store.shopReducer)
     const user = useSelector(store => store.user)
-    let { id } = useParams();
-    let cakeBiteId = Number(id);
+    // let { id } = useParams();
+    // let cakeBiteId = Number(id);
     const [selectedQuantity, setSelectedQuantity] = useState(25);
     const [adjustedPrice, setAdjustedPrice] = useState(34.99);
 
 
     // --------- FIND THE CAKEBITE ITEM BASED ON THE ID ---------//
-    let cakeBiteItem = shopReducer.find(item => item.id === cakeBiteId) || {};
+    // let cakeBiteItem = shopReducer.find(item => item.id === cakeBiteId) || {};
     
 
     // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
@@ -76,67 +76,69 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
 
 
     // ---------- NEW GO TO CART BUTTON ---------- //
-    const goToCartButton = () => {
-        history.push('/cart');
+    // const goToCartButton = () => {
+    //     history.push('/cart');
     
-    }
+    // }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- NEW BACK TO SHOP BUTTON ---------- //
-    const backToShopButton = () => {
-        history.push('/shop');
-    }
+    // const backToShopButton = () => {
+    //     history.push('/shop');
+    // }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
     // ---------- RETURN THE STUFF---------- //
     return (
         <>
-        <div>
-            <figure>
-            <h1>{cakeBiteItem.flavor}</h1>
-            <img className="cakebiteImage"
-                 src={cakeBiteItem.image || ""}
-                 alt={cakeBiteItem.flavor} />
-            <br />
-            <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
-            <p>{cakeBiteItem.description}</p>
+        <div className="cakebite-details">
+            <button className="modal-close" onClick={onClose}>X</button>
+                <figure>
+                    <h1>{cakeBite.flavor}</h1>
+                        <img className="cakebiteImage"
+                             src={cakeBite.image || ""}
+                             alt={cakeBite.flavor} />
+                    <br />
+                    <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
+                        <p>{cakeBite.description}</p>
             </figure>
 
             <figure>
-            <div className='method'>
-                <h3>Quantity:</h3>
-                        <input type="radio"
-                               id="quantity25" 
-                               name="method" 
-                               value={25} 
-                               checked={selectedQuantity === 25} 
-                               onChange={handleChange} />
-                        <label htmlFor="quantity25">25</label><br></br>
-                        <input type="radio" 
-                               id="quantity50" 
-                               name="method" 
-                               value={50} 
-                               checked={selectedQuantity === 50}
-                               onChange={handleChange} />
-                        <label htmlFor="quantity50">50</label><br></br>
-                        <input type="radio" 
-                               id="quantity75"
-                               name="method" 
-                               value={75}
-                               checked={selectedQuantity === 75} 
-                               onChange={handleChange} />
-                        <label htmlFor="quantity75">75</label><br></br>
-                        <input type="radio"
-                               id="quantity100"
-                               name="method" 
-                               value={100}
-                               checked={selectedQuantity === 100} 
-                               onChange={handleChange} />
-                        <label htmlFor="quantity100">100</label><br></br>
-                    </div>
-                    </figure>
+                <div className='method'>
+                    <h3>Quantity:</h3>
+                            <input type="radio"
+                                   id="quantity25" 
+                                   name="method" 
+                                   value={25} 
+                                   checked={selectedQuantity === 25} 
+                                   onChange={handleChange} />
+                            <label htmlFor="quantity25">25</label><br></br>
+                            <input type="radio" 
+                                   id="quantity50" 
+                                   name="method" 
+                                   value={50} 
+                                   checked={selectedQuantity === 50}
+                                   onChange={handleChange} />
+                            <label htmlFor="quantity50">50</label><br></br>
+                            <input type="radio" 
+                                   id="quantity75"
+                                   name="method" 
+                                   value={75}
+                                   checked={selectedQuantity === 75} 
+                                   onChange={handleChange} />
+                            <label htmlFor="quantity75">75</label><br></br>
+                            <input type="radio"
+                                   id="quantity100"
+                                   name="method" 
+                                   value={100}
+                                   checked={selectedQuantity === 100} 
+                                   onChange={handleChange} />
+                            <label htmlFor="quantity100">100</label><br></br>
+                </div>
+            </figure>
+
             <figure>
                  <button className="btn"
                         onClick={addToCartButton}>
@@ -144,7 +146,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                 </button> 
             </figure>
             
-            <figure>
+            {/* <figure>
                 <button className="btn"
                         onClick={backToShopButton}>
                             Back to Shop
@@ -154,7 +156,7 @@ function CakeBiteDetails({getCakeBite, cakeBite}) {
                         onClick={goToCartButton}>
                             Go To Cart
                 </button>
-            </figure>
+            </figure> */}
             
             
         </div>
