@@ -50,11 +50,14 @@ function* populateCart(action) {
 // -------- EDITS ITEM IN CART -------- //
 function* handleEdit(action) {
     try {
+        console.log('Dispatching PUT request for:', action.payload);
          yield axios.put(`api/cart/pending/${action.payload.id}`, action.payload);
+         console.log('Fetching updated cart items');
          const cartItems = yield axios.get('/api/cart/pending')
+         console.log('Fetched updated cart items:', cartItems.data);
          yield put({
-             type: 'EDIT_ITEM',
-             payload: action.payload
+             type: 'SET_CART_ITEM',
+             payload: cartItems.data
          });
     } catch (error) {
         console.log('oopsies, error in handleEdit cart.saga:', error);

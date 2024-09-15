@@ -51,17 +51,17 @@ function CakeBiteDetails({ cakeBite, onClose}) {
         // let quantity = getRadioValue();
         let cakebiteToAdd = {
             user_id: user.id,
-            flavor_id: cakeBiteItem.id,
-            flavor: cakeBiteItem.flavor,
+            flavor_id: cakeBite.id,
+            flavor: cakeBite.flavor,
             quantity: selectedQuantity,
-            image: cakeBiteItem.image,
+            image: cakeBite.image,
             price: adjustedPrice.toFixed(2)
         };
         console.log('Sending to CART from cakebitedetails.jsx:', cakebiteToAdd);
         Swal.fire({
             position: "center",
             icon: "success",
-            title: `${selectedQuantity} ${cakeBiteItem.flavor} cakebites have been added to your cart!!`,
+            title: `${selectedQuantity} ${cakeBite.flavor} cakebites have been added to your cart!!`,
             showConfirmButton: false,
             timer: 2000
           }).then(() => {

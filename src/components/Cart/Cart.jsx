@@ -20,6 +20,25 @@ function Cart() {
     const specificDate = new Date();
     console.log('Cart items in Cart.jsx:', cartItems);
 
+    // --------- USE EFFECTS --------- //
+    useEffect(() => {
+        console.log('Fetching cart items');
+        dispatch({
+            type: 'POPULATE_CART'
+        })
+    }, [dispatch])
+
+    useEffect(() => {
+        console.log('Cart items updated:', cartItems);
+        calculateTotal();
+    }, [cartItems]);
+
+    // --------- ADJUSTS DATE STAMP FOR DATABASE --------- //
+    const formatDate = (date) => {
+        return date.toISOString().split('T')[0];
+    };
+
+    // --------- CALCULATES TOTAL CART BASED ON QUANTITIES SELECTED --------- //
     const calculateTotal = () => {
         if (cartItems.length > 0) {
         const newTotal = cartItems[0].reduce((total, cakebite) => {
@@ -30,23 +49,16 @@ function Cart() {
         setTotal(newTotal);
         }
     };
+    
 
-    useEffect(() => {
-        calculateTotal();
-    }, [cartItems]);
-
-    useEffect(() => {
-        dispatch({type: 'POPULATE_CART'})
-    }, [dispatch])
-
-    // -------- EDIT FUNCTIONS -------- //
-    const handleQuantityChange = (event) => {
+    // --------- EDIT BUTTON --------- //
+    const handleChange = (event) => {
         const newQuantity = Number(event.target.value);
         setSelectedQuantity(newQuantity);
-        //Calculate Adjusted price based on quantity //
+        // Update adjusted price based on new quantity
         const basePrice = 34.99;
         let newPrice;
-
+        
         switch (newQuantity) {
             case 25: newPrice = basePrice; break;
             case 50: newPrice = basePrice + 24.99; break;
@@ -54,66 +66,39 @@ function Cart() {
             case 100: newPrice = basePrice + 84.97; break;
             default: newPrice = basePrice;
         }
+        
         setAdjustedPrice(newPrice);
-    }
-
-    const handleSave = () => {
-        if (editItem) {
-            const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
-            dispatch({
-                type: 'EDIT_ITEM_REQUEST',
-                payload: updatedItem
-            });
-            setEditItem(null);
-            setSelectedQuantity(null);
-            setAdjustedPrice(0);
-        }
-    };
-
-    const handleCancel = () => {
-        setEditItem(null);
-        setSelectedQuantity(null);
-        setAdjustedPrice(null);
     };
 
     const editButton = (cakebite) => {
         setEditItem(cakebite);
         setSelectedQuantity(cakebite.quantity);
-        const basePrice = 34.99;
-        let initialPrice;
-
-        switch (cakebite.quantity) {
-            case 25: initialPrice = basePrice; break;
-            case 50: initialPrice = basePrice + 24.99; break;
-            case 75: initialPrice = basePrice + 54.98; break;
-            case 100: initialPrice = basePrice + 84.97; break;
-            default: initialPrice = basePrice;
-        }
-        setAdjustedPrice(initialPrice);
+        handleChange({ target: { value: cakebite.quantity } });
     };
 
-    // --------- EDIT BUTTON --------- //
-    
-    // const handleEdit = () => {
-    //     if (editItem) {
-    //         const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
-    //         dispatch({
-    //             type: 'EDIT_ITEM_REQUEST',
-    //             payload: updatedItem
-    //         })
-    //         setEditItem(null);
-    //     }
-    // };
-    
+    const handleSave = async () => {
+        if (editItem) {
+        const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
+        console.log('Saving item:', updatedItem);
+        
+            dispatch({
+                type: 'EDIT_ITEM_REQUEST',
+                payload: updatedItem
+            });
+            setEditItem(null);
+        }
+    };
+
+    const handleCancel = () => {
+        setEditItem(null);
+        setSelectedQuantity(25);
+        setAdjustedPrice(34.99);
+    };
 
     // --------- END EDIT BUTTON --------- //
 
-    const formatDate = (date) => {
-        return date.toISOString().split('T')[0];
-    };
 
     // --------- DELETE BUTTON --------- //
-
     const deleteButton = (cakebiteId) => {
 
         Swal.fire({
@@ -145,9 +130,7 @@ function Cart() {
 
     
     // --------- SENDS ORDER TO ORDERS/ORDER_ITEMS DB ---------//
-
     const handleCart = () => {
-
         // THIS IS THE DATA BEING SENT TO THE DATABASE //
         const postData = {
             date: formatDate(specificDate),
@@ -186,10 +169,6 @@ function Cart() {
             alert('ERRORRR sending ORDER in Cart.jsx:', error);
           });
     }
-
-    const handleChange = (event) => {
-        setSelectedQuantity(Number(event.target.value));
-    };
 
 
     return (
@@ -311,5 +290,3 @@ function Cart() {
 
 export default Cart;
 
-
-// ---------- OLD DELETE FUNCTION ----------- //

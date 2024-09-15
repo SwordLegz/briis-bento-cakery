@@ -10,7 +10,6 @@ import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
-
 import AboutPage from '../AboutPage/AboutPage';
 import Events from '../Events/Events';
 import Contact from '../Contact/Contact';
@@ -21,7 +20,6 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import CakeBiteDetails from '../CakeBiteItem/CakeBiteDetails';
-// import Modal from '../Modal/Modal';
 
 import './App.css';
 import RegisterForm from '../RegisterForm/RegisterForm';
@@ -30,7 +28,6 @@ import RegisterForm from '../RegisterForm/RegisterForm';
 function App() {
   const dispatch = useDispatch();
   const user = useSelector(store => store.user);
-  // const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
