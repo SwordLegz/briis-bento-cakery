@@ -1,3 +1,21 @@
+// -------- EDIT BUTTON IN CART.JSX -------- //
+// const editButton = (cakebite) => {
+//   setEditItem(cakebite);
+//   setSelectedQuantity(cakebite.quantity);
+//   const basePrice = 34.99;
+//   let initialPrice;
+
+//   switch (cakebite.quantity) {
+//       case 25: initialPrice = basePrice; break;
+//       case 50: initialPrice = basePrice + 24.99; break;
+//       case 75: initialPrice = basePrice + 54.98; break;
+//       case 100: initialPrice = basePrice + 84.97; break;
+//       default: initialPrice = basePrice;
+
+//   }
+
+
+
 // Swal.fire({
 //   title: "Delete from cart?",
 //   text: "You are about to delete these from your cart!",

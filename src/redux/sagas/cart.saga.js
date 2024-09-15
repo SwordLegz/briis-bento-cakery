@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 
-// GETS ITEMS IN CART //
+// -------- GETS ITEMS IN CART -------- //
 function* fetchCartItems() {
     try {
         const cartItems = yield axios.get('/api/cart')
@@ -14,7 +14,10 @@ function* fetchCartItems() {
         console.log('FetchCartItems SAGA dun like you in cart.saga', error);
     }
 }
-// ADDS ITEM TO CART //
+// -------- END GETS ITEMS IN CART -------- //
+
+
+// -------- ADDS ITEM TO CART -------- //
 function* handleCart(action) {
     console.log('hi')
     try {
@@ -41,6 +44,25 @@ function* populateCart(action) {
         
     }
 }
+// -------- END ADDS ITEM TO CART -------- //
+
+
+// -------- EDITS ITEM IN CART -------- //
+function* handleEdit(action) {
+    try {
+         yield axios.put(`api/cart/pending/${action.payload.id}`, action.payload);
+         const cartItems = yield axios.get('/api/cart/pending')
+         yield put({
+             type: 'EDIT_ITEM',
+             payload: action.payload
+         });
+    } catch (error) {
+        console.log('oopsies, error in handleEdit cart.saga:', error);
+
+    }
+}
+// -------- END EDITS ITEM IN CART -------- //
+
 
 // -------- DELETES ITEM FROM CART -------- //
 function* handleDelete(action) {
@@ -53,6 +75,7 @@ function* handleDelete(action) {
         console.log('OohWhoops handleDelete in cart.saga no good:', error);
     }
 }
+// -------- END DELETES ITEM FROM CART -------- //
 
 // -------- PLACE ORDER -------- //
 function* handlePlaceOrder(action) {
@@ -73,6 +96,7 @@ function* cartSaga() {
     yield takeEvery('ADD_CAKE_TO_CART', handleCart)
     yield takeEvery('REMOVE_ITEM_FROM_CART', handleDelete)
     yield takeEvery('ORDER_PLACED', handlePlaceOrder)
+    yield takeEvery('EDIT_ITEM_REQUEST', handleEdit)
 }
 
 export default cartSaga;

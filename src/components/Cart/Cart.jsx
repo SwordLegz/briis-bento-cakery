@@ -1,11 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import axios from 'axios';
 import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
-// import CartTable from "./CartTable";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function Cart() {
@@ -13,12 +10,14 @@ function Cart() {
     const history = useHistory();
     const dispatch = useDispatch();
     const [total, setTotal] = useState(0);
-    // USE SELECTOR GETS CART REDUCER DATA
-    // --------- FIND THE CART ITEM BASED ON THE ID ---------//
+    const [editItem, setEditItem] = useState();
+    const [selectedQuantity, setSelectedQuantity] = useState(25);
+    const [adjustedPrice, setAdjustedPrice] = useState(34.99);
+    // 
 
+    // ------ USE SELECTOR FINDS CART REDUCER DATA BASED ON THE ID ------//
     const cartItems = useSelector(store => store.cartReducer);
     const specificDate = new Date();
-console.log('Current cart state in cart.jsx:', useSelector(store => store.cartReducer));
     console.log('Cart items in Cart.jsx:', cartItems);
 
     const calculateTotal = () => {
@@ -36,9 +35,78 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
         calculateTotal();
     }, [cartItems]);
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch({type: 'POPULATE_CART'})
-    },[])
+    }, [dispatch])
+
+    // -------- EDIT FUNCTIONS -------- //
+    const handleQuantityChange = (event) => {
+        const newQuantity = Number(event.target.value);
+        setSelectedQuantity(newQuantity);
+        //Calculate Adjusted price based on quantity //
+        const basePrice = 34.99;
+        let newPrice;
+
+        switch (newQuantity) {
+            case 25: newPrice = basePrice; break;
+            case 50: newPrice = basePrice + 24.99; break;
+            case 75: newPrice = basePrice + 54.98; break;
+            case 100: newPrice = basePrice + 84.97; break;
+            default: newPrice = basePrice;
+        }
+        setAdjustedPrice(newPrice);
+    }
+
+    const handleSave = () => {
+        if (editItem) {
+            const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
+            dispatch({
+                type: 'EDIT_ITEM_REQUEST',
+                payload: updatedItem
+            });
+            setEditItem(null);
+            setSelectedQuantity(null);
+            setAdjustedPrice(0);
+        }
+    };
+
+    const handleCancel = () => {
+        setEditItem(null);
+        setSelectedQuantity(null);
+        setAdjustedPrice(null);
+    };
+
+    const editButton = (cakebite) => {
+        setEditItem(cakebite);
+        setSelectedQuantity(cakebite.quantity);
+        const basePrice = 34.99;
+        let initialPrice;
+
+        switch (cakebite.quantity) {
+            case 25: initialPrice = basePrice; break;
+            case 50: initialPrice = basePrice + 24.99; break;
+            case 75: initialPrice = basePrice + 54.98; break;
+            case 100: initialPrice = basePrice + 84.97; break;
+            default: initialPrice = basePrice;
+        }
+        setAdjustedPrice(initialPrice);
+    };
+
+    // --------- EDIT BUTTON --------- //
+    
+    // const handleEdit = () => {
+    //     if (editItem) {
+    //         const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
+    //         dispatch({
+    //             type: 'EDIT_ITEM_REQUEST',
+    //             payload: updatedItem
+    //         })
+    //         setEditItem(null);
+    //     }
+    // };
+    
+
+    // --------- END EDIT BUTTON --------- //
 
     const formatDate = (date) => {
         return date.toISOString().split('T')[0];
@@ -73,7 +141,7 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
             console.log(err);
         });
     }
-
+    // --------- END DELETE BUTTON --------- //
 
     
     // --------- SENDS ORDER TO ORDERS/ORDER_ITEMS DB ---------//
@@ -117,9 +185,12 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
           }).catch(error => {
             alert('ERRORRR sending ORDER in Cart.jsx:', error);
           });
-
-        
     }
+
+    const handleChange = (event) => {
+        setSelectedQuantity(Number(event.target.value));
+    };
+
 
     return (
         <div>
@@ -162,7 +233,59 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
                                         <h4>Price:</h4> ${parseFloat(cakebite.price).toFixed(2)}
                                     </td>
                                     <td>
-                                        <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button>
+                                        
+                                    {editItem && editItem.id === cakebite.id ? (
+                                        <div>
+                                            <h3>Edit Item</h3>
+                                            <div>
+                                                <input
+                                                    type="radio"
+                                                    id="quantity25"
+                                                    name="quantity"
+                                                    value={25}
+                                                    checked={selectedQuantity === 25}
+                                                    onChange={handleChange}
+                                                />
+                                                <label htmlFor="quantity25">25</label><br />
+                                                <input
+                                                    type="radio"
+                                                    id="quantity50"
+                                                    name="quantity"
+                                                    value={50}
+                                                    checked={selectedQuantity === 50}
+                                                    onChange={handleChange}
+                                                />
+                                                <label htmlFor="quantity50">50</label><br />
+                                                <input
+                                                    type="radio"
+                                                    id="quantity75"
+                                                    name="quantity"
+                                                    value={75}
+                                                    checked={selectedQuantity === 75}
+                                                    onChange={handleChange}
+                                                />
+                                                <label htmlFor="quantity75">75</label><br />
+                                                <input
+                                                    type="radio"
+                                                    id="quantity100"
+                                                    name="quantity"
+                                                    value={100}
+                                                    checked={selectedQuantity === 100}
+                                                    onChange={handleChange}
+                                                />
+                                                <label htmlFor="quantity100">100</label><br />
+                                            </div>
+                                            
+                                            <h4>Adjusted Price: ${adjustedPrice.toFixed(2)}</h4>
+                                            <button className="btn" onClick={handleSave}>Save Changes</button>
+                                            <button className="btn" onClick={handleCancel}>Cancel</button>
+                                        </div>
+                                        ) : (
+                                            <div>
+                                                <button className="btn" onClick={() => editButton(cakebite)}>Edit</button>
+                                                <button className="btn" onClick={() => deleteButton(cakebite.id)}>Delete</button>
+                                            </div>
+                                    )}
                                     </td>
                                 </tr>
                             )) : <tr><td colSpan="3">No items in the cart.</td></tr>}
@@ -179,6 +302,8 @@ console.log('Current cart state in cart.jsx:', useSelector(store => store.cartRe
                 </button>
             </div>
             </figure>
+
+            
 
         </div>
     )

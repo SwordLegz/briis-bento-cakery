@@ -9,14 +9,15 @@ const cartReducer = (state = [], action) => {
       return [action.payload];
 
     // -------- EDIT CAKEBITE IN CART -------- //
-    // case 'EDIT_CAKEBITE_IN_CART':
-    //   const cakebiteToEdit = state.map(item =>
-    //     item.id === action.payload.id ? action.payload : item
-    //   )
-    //   console.log('You tryna EDIT THIS in cart.reducer?:', cakebiteToEdit);
-    //   return cakebiteToEdit;
-      // const cakebiteToEdit = action.payload;
-      
+
+    case 'EDIT_ITEM':
+      return state.map(item =>
+        item.id === action.payload.id ? {...item, quantity: action.payload.quantity, price: action.payload.price } : item
+      );
+
+    // -------- EDIT CAKEBITE IN CART -------- //
+
+
     // -------- DELETE CAKEBITE IN CART -------- //
     case 'REMOVE_FROM_CART':
       return state.filter((_, index) => index !== action.payload);
@@ -30,6 +31,7 @@ const cartReducer = (state = [], action) => {
       return state;
   }
 };
+// -------- END DELETE CAKEBITE IN CART -------- //
 
 export default cartReducer;
 

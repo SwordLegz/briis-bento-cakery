@@ -66,26 +66,42 @@ router.delete('/pending/:id', async (req, res) => {
 // ---------- EDIT PUT ROUTE ----------- //
 
 router.put('/pending/:id', async (req, res) => {
-    
+    console.log('Heyaaa u tryna edit /api/pending/:id in cart.router:');
     const id = req.params.id;
-    const { quantity } = req.body;
+    const { quantity, price } = req.body;
+
     console.log('BEEP BEEP your EDIT/PUT cart.router for /api/edit/:id requestsss:', id, quantity);
     
-    try {
-        const result = await pool.query(`
-            UPDATE "pending_cart"
-            SET "quantity" = $1
-            WHERE "id" = $2;
-            `, [quantity, id]);
+    const sqlText = `
+        UPDATE "pending_cart"
+        SET "quantity" = $1, "price" = $2
+        WHERE "id" = $3;
+        `;
+        
+    const sqlValues = [quantity, price, id];
 
-        if (result.rowCount === 0) {
-            return res.status(404).json({ message: 'Sowwy, no edit' });
-        }
+    try{
+        await pool.query(sqlText, sqlValues);
         res.sendStatus(200);
     } catch (error) {
-        console.log('No can doozies for edit in cart.router:', error);
+        console.log('YIKIEZZZ error with edit in cart.router:', error);
         res.sendStatus(500);
     }
+    // try {
+    //     const result = await pool.query(`
+    //         UPDATE "pending_cart"
+    //         SET "quantity" = $1
+    //         WHERE "id" = $2;
+    //         `, [quantity, id]);
+
+    //     if (result.rowCount === 0) {
+    //         return res.status(404).json({ message: 'Sowwy, no edit' });
+    //     }
+    //     res.sendStatus(200);
+    // } catch (error) {
+    //     console.log('No can doozies for edit in cart.router:', error);
+    //     res.sendStatus(500);
+    // }
 });
 
 module.exports = router;

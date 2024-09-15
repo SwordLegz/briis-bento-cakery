@@ -1,6 +1,8 @@
 import { put, takeEvery, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
+
+// -------- SENDS CART TO DATABASE, CLEARING "PENDING_CART" -------- //
 function* handlePlaceOrder(action) {
     try {
         const orderData = action.payload;
@@ -27,15 +29,9 @@ function* handlePlaceOrder(action) {
         });
     }
 }
+// -------- END SENDS CART TO DATABASE, CLEARING "PENDING_CART" -------- //
 
 
-// function* editCakeBiteItem(action) {
-//     try {
-//         console.log('oopsies');
-//     } catch (error) {
-
-//     }
-// }
 
 function* orderSaga() {
     yield takeLatest('ORDER_IS_SENT', handlePlaceOrder)
