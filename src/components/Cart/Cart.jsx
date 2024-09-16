@@ -161,7 +161,7 @@ function Cart() {
                 });
                 Swal.fire({
                     title: "Thankiezzz!",
-                    text: "If you'd like to make changes to your order, you can do so through your profile!",
+                    // text: "If you'd like to make changes to your order, you can do so through your profile!",
                     imageUrl: "../images/octopus.jpeg",
                     imageWidth: 400,
                     imageHeight: 400,

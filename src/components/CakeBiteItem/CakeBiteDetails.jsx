@@ -75,11 +75,10 @@ function CakeBiteDetails({ cakeBite, onClose}) {
     // ---------- END SENDS ITEMS TO CART ---------- //
 
 
-    // ---------- NEW GO TO CART BUTTON ---------- //
-    // const goToCartButton = () => {
-    //     history.push('/cart');
-    
-    // }
+    // ---------- GO TO CART BUTTON ---------- //
+    const goToCartButton = () => {
+        history.push('/cart');
+    }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 
@@ -101,7 +100,7 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                              src={cakeBite.image || ""}
                              alt={cakeBite.flavor} />
                     <br />
-                    <h2>Price: ${adjustedPrice.toFixed(2)} </h2>
+                    <h3>Price: ${adjustedPrice.toFixed(2)} </h3>
                         <p>{cakeBite.description}</p>
             </figure>
 
@@ -140,10 +139,18 @@ function CakeBiteDetails({ cakeBite, onClose}) {
             </figure>
 
             <figure>
-                 <button className="btn"
+                 <button className="modal-btn"
                         onClick={addToCartButton}>
                             Add to Cart
                 </button> 
+                <button className="modal-btn"
+                        onClick={goToCartButton}>
+                            Go to Cart
+                </button> 
+                {/* <button className="modal-btn"
+                        onClick={backToShopButton}>
+                            Go to Shop
+                </button>  */}
             </figure>
             
             {/* <figure>

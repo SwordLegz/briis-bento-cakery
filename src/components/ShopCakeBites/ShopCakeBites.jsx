@@ -29,6 +29,7 @@ function ShopCakeBites() {
     <div>
       <figure>
         <h2>Shop Cakebites!</h2>
+        <h4>Starting at $34.99</h4>
         <section className="cakebites">
           {cakeBites.map((singleCakeBite) => (
             <div key={singleCakeBite.id}>

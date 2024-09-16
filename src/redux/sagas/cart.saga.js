@@ -72,7 +72,7 @@ function* handleDelete(action) {
     try {
         yield axios.delete(`/api/cart/pending/${action.payload}`);
         yield put({
-            type: 'SET_CART_ITEMS'
+            type: 'REMOVE_FROM_CART'
         });
     } catch (error) {
         console.log('OohWhoops handleDelete in cart.saga no good:', error);

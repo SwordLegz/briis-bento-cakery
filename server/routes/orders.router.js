@@ -29,7 +29,7 @@ router.post('/', async (req, res) => {
         const orderId = orderResult.rows[0].id;
 
         // INSERT ORDER ITEMS //
-        const insertItemsPromises = cartItems[0].map(cakebite => {
+        const insertItemsPromises = cartItems.map(cakebite => {
             const { flavor_id, is_egg_free, is_dairy_free, is_gluten_free, is_vegan, quantity } = cakebite;
             return client.query(`
                 INSERT INTO "order_items" ("order_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")

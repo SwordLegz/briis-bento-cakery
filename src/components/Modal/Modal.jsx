@@ -8,11 +8,12 @@ const Modal = ({ isOpen, onClose, cakeBite }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>X</button>
+    <div onClick={onClose} className="modal-overlay">
+      <div onClick={(e) => e.stopPropagation()} className="modal-content">
+        <button onClick={onClose} className="overlay"></button>
+        {/* <button className="modal-close" onClick={onClose}>X</button> */}
         {cakeBite && (
-          <CakeBiteDetails cakeBite={cakeBite} onClose={onClose} />
+          <div className="modalRight"><CakeBiteDetails cakeBite={cakeBite} onClose={onClose} /> </div>
         )}
       </div>
     </div>

@@ -54,6 +54,8 @@ Button
   cursor: pointer;
 }
 
+
+
 .btn_sizeMin {
   min-height: 50px;
   min-width: 100px;
