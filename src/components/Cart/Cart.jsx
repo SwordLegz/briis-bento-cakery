@@ -219,7 +219,7 @@ function Cart() {
                                         
                                     {editItem && editItem.id === cakebite.id ? (
                                         <div>
-                                            <h3>Edit Item</h3>
+                                            <h3>Edit Quantity:</h3>
                                             <div>
                                                 <input
                                                     type="radio"

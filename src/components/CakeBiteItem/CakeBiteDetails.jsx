@@ -100,17 +100,16 @@ function CakeBiteDetails({ cakeBite, onClose}) {
         <div className="cakebite-details">
             <button className="modal-close" onClick={onClose}>X</button>
                 <figure>
+                <tbody>
+                    <td></td>
                     <h1>{cakeBite.flavor}</h1>
                         <img className="cakebiteImage"
                              src={cakeBite.image || ""}
                              alt={cakeBite.flavor} />
                     <br />
-                    <h3>Price: ${adjustedPrice.toFixed(2)} </h3>
-                        <p>{cakeBite.description}</p>
-            </figure>
-
-            <figure>
-                <div className='method'>
+                   
+                
+                    <td>
                     <h3>Quantity:</h3>
                             <input type="radio"
                                    id="quantity25" 
@@ -146,10 +145,21 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                                        name="eggFree" 
                                        id="eggFree" />Egg Free
                             </label> */}
-                </div>
+                {/* </div> */}
+                
+                </td>
+                </tbody>
             </figure>
 
+            <tbody>
+                <td>
+                <p className="description">{cakeBite.description}</p>
+                </td>
+            </tbody>
+
             <figure>
+                <tbody>
+                 <td>
                  <button className="modal-btn"
                         onClick={addToCartButton}>
                             Add to Cart
@@ -158,6 +168,11 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                         onClick={goToCartButton}>
                             Go to Cart
                 </button> 
+                </td>
+                    <td>
+                        <h2 className="price">Price: ${adjustedPrice.toFixed(2)}</h2>
+                    </td>
+                </tbody>
                 {/* <button className="modal-btn"
                         onClick={backToShopButton}>
                             Go to Shop
