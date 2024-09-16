@@ -22,7 +22,7 @@ function Nav() {
 
   return (
     <div className="nav">
-  
+  <br />
       <Link className="navLink" to="/">
         <button className="btn">
               Home

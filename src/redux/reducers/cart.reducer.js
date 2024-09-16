@@ -18,7 +18,7 @@ const cartReducer = (state = [], action) => {
       );
 
     // -------- DELETE CAKEBITE IN CART -------- //
-    case 'REMOVE_FROM_CART':
+    case 'REMOVE_ITEM_FROM_CART':
       return state.filter(item => item.id !== action.payload);
       // console.log('U tryna delete this er wut?:', )
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector} from 'react-redux';
 import { useState } from 'react';
 // import Modal from '../Modal/Modal';
+import './Home.css';
 
 function Home() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -12,7 +13,7 @@ function Home() {
     <div className="container">
       <figure>
       <h2>Hello there, sweet {user.first_name}!</h2>
-      <p>We also offer allergy friendly cake bites!!</p>
+      {/* <p>We also offer allergy friendly cake bites!!</p> */}
       <br />
       <img 
         className="img-home"

@@ -45,6 +45,11 @@ function CakeBiteDetails({ cakeBite, onClose}) {
     }
 // ---------- END PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
 
+    // ---------- ALLERGY SELECTOR  ---------- //
+
+
+
+
 
     // ---------- SENDS ITEMS TO CART ---------- //
     const addToCartButton = () => {
@@ -135,6 +140,12 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                                    checked={selectedQuantity === 100} 
                                    onChange={handleChange} />
                             <label htmlFor="quantity100">100</label><br></br>
+
+                            {/* <label htmlFor="dairyFree">
+                                <input type="checkbox" 
+                                       name="eggFree" 
+                                       id="eggFree" />Egg Free
+                            </label> */}
                 </div>
             </figure>
 
