@@ -105,13 +105,13 @@ function Cart() {
     const deleteButton = (cakebiteId) => {
 
         Swal.fire({
-            title: "You're about to obliterate this item from your cart!!",
-            text: "You won't be able to undo this!",
+            title: "You're about to remove this item from your cart!!",
+            text: "Would you like to continue?",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#04bb99",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, obliterate it from my cart!"
+            confirmButtonText: "Yes, remove it from my cart!"
           }).then((result) => {
             if (result.isConfirmed) {
             dispatch({
@@ -119,8 +119,8 @@ function Cart() {
                 payload: cakebiteId
             });
               Swal.fire({
-                title: "Obliterated!!",
-                text: "Your item has been obliterated from your cart!",
+                // title: "Obliterated!!",
+                text: "Your item has been removed from your cart!",
                 icon: "success"
               });
             }
