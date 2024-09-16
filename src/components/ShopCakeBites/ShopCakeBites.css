@@ -1,13 +1,36 @@
 .cakebiteImage {
+    object-fit: fit;
+    object-position: -10% 10;
     box-sizing: border-box;
-    width: 400px;
-    max-width: 100%;
-    padding: 25px;
-    margin: 0 auto 20px;
-    background-color: #efefef;
-    border-radius: 3px;
-    box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+    width: 350px;
+    height: 230px;
+    border-radius: 20px;
+    max-height: 100%;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
+    background-color: #00acb0;
+    padding: 7px;
+
   }
 
-  /* width: 200px;
-    object-fit: cover; */
+  .greeting2 {
+    /* text-align: center; */
+      font-size: xx-large;
+      font-family: "Playwrite ES", cursive;
+      font-optical-sizing: auto;
+      font-style: normal;
+  }
+
+
+  .outerdiv {
+    columns: 3;
+    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  
+/* 
+  .outerdiv {
+    display: flex;
+    flex-wrap: wrap;
+  } */

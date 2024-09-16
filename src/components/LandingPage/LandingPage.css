@@ -1,6 +1,13 @@
 /* --------------------------------------------------------------------------------
 Grid
 -------------------------------------------------------------------------------- */
+.greeting {
+  text-align: center;
+    font-size: x-large;
+    font-family: "Playwrite ES", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
 
 .grid {
   display: flex;

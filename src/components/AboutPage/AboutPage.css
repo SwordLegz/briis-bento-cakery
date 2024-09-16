@@ -1,3 +1,34 @@
 .container {
     background-color: #65b8aee0;
 }
+
+.about {
+    margin: auto 20px;
+    padding: 25px;
+}
+
+.brii-kid {
+    box-sizing: border-box;
+    object-fit: none;
+    object-position: -10% 10;
+    box-sizing: border-box;
+    width: 335px;
+    height: 380px;
+    border-radius: 20px;
+    max-height: 100%;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
+    background-color: #c399fa;
+    padding: 7px;
+}
+
+.brii-adult {
+    object-fit: cover;
+    box-sizing: border-box;
+    width: 335px;
+    height: 380px;
+    max-height: 100%;
+    border-radius: 20px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
+    padding: 7px;
+    background-color: #c399fa;
+}

@@ -102,8 +102,8 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                 <figure>
                 <tbody>
                     <td></td>
-                    <h1>{cakeBite.flavor}</h1>
-                        <img className="cakebiteImage"
+                    <h1 className="greeting2">{cakeBite.flavor}</h1>
+                        <img className="cakebite-image"
                              src={cakeBite.image || ""}
                              alt={cakeBite.flavor} />
                     <br />

@@ -14,7 +14,7 @@ function LandingPage() {
    return (
      <div className="container">
       
-       <h2>Hello there, sweet friend!</h2>
+       <h2 className="greeting">Hello there, sweet friend!</h2>
        {/* <p>We also offer allergy friendly cake bites!!</p> */}
        <img 
          className="img-home"

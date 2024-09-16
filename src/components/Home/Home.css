@@ -1,5 +1,6 @@
 .img-home {
     box-sizing: border-box;
+    
     width: 750px;
     max-width: 100%;
     padding: 5px;
@@ -7,7 +8,14 @@
     background-color: #efefef;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
+}
 
+.greeting {
+    text-align: center;
+    font-size: xx-large;
+    font-family: "Playwrite ES", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .container {

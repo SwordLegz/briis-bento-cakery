@@ -12,7 +12,7 @@ function Home() {
   return (
     <div className="container">
       <figure>
-      <h2>Hello there, sweet {user.first_name}!</h2>
+      <h2 className="greeting">Hello there, sweet {user.first_name}!</h2>
       {/* <p>We also offer allergy friendly cake bites!!</p> */}
       <br />
       <img 

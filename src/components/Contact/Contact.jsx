@@ -4,8 +4,9 @@ function Contact() {
     return (
         <div className="container">
             <div>
-                <h2>
-                    Brii's Bento Cakery:
+                <h2 className="greeting">
+                    <u>
+                    Reach out to us!</u>
                 </h2>
                 <p>Phone: [Insert Google Number]</p>
                 <p>Email: briisbentocakery@gmail.com</p>

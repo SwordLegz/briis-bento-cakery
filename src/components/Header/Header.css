@@ -1,12 +1,13 @@
+
+
 .header {
-    /* font-family: "pecita"; */
+    display: flex;
+    /* justify-content: center; */
     text-align: center;
     font-size: xx-large;
-}
-
-@font-face {
-    font-family: "Pecita";
-    src: url();
+    font-family: "Playwrite ES", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
 }
 
 .home-img {
@@ -14,3 +15,8 @@
     height: 200px;
     border-radius: 10px;
 }
+
+/* .button {
+    display: flex;
+    justify-content: flex-end;
+} */

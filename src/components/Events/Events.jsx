@@ -1,10 +1,11 @@
 import React from "react";
+import '../AboutPage/AboutPage.css';
 
 function Events() {
     return (
             <div className="container">
                 <div>
-                    <h2>We do events!</h2>
+                    <h2 className="greeting2">We do events!</h2>
                     <ul>
                         Birthdays
                     </ul>

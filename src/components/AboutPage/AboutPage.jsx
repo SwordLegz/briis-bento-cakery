@@ -9,7 +9,19 @@ import './AboutPage.css';
 function AboutPage() {
   return (
     <div className="container">
-      <div>
+
+      <figure>
+        <div>
+          <h2 className="greeting">
+            <u>Who is Brii's Bento Cakery:</u>
+          </h2>
+          <img className="brii-kid" src="./images/brii-kid.jpg" />
+          <img className="brii-adult" src="./images/brii-adult.jpeg" />
+        </div>
+      </figure>
+
+      <figure>
+      <div className="about">
         <p>What started as a simple experiment in 2011 has blossomed into a passion for creating 
           delightful cake bites. Growing up, I was inspired by my grandma and mom, who filled our 
           home with the comforting aroma of fresh-baked treats. Their love for baking ignited my 
@@ -24,6 +36,7 @@ function AboutPage() {
           event with our unique and delicious treats.</p>
           <p>Thank you for letting us be a part of your sweet moments!</p>
       </div>
+      </figure>
     </div>
   );
 }

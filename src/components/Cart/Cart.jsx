@@ -178,17 +178,19 @@ function Cart() {
     return (
         <div>
             <figure>
-            <h2>Checkout:</h2>
+            <h2 className="greeting2">
+                <u>Checkout:</u>
+            </h2>
             </figure>
             <div className="showCustomerInfo">
                 <figure>
-                <h3>Customer Information:</h3>
-                {user.first_name}
-                <br />
+                {/* <h3>Customer Information:</h3>
+                {user.first_name} */}
+                {/* <br /> */}
                 {/* {user.last_name} */}
-                <br />
+                {/* <br /> */}
                 {/* {user.username} */}
-                <br />
+                {/* <br /> */}
                 </figure>
             </div>
             <figure>

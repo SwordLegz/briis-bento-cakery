@@ -28,12 +28,16 @@ function ShopCakeBites() {
   return (
     <div>
       <figure>
-        <h2>Shop Cakebites!</h2>
-        <h4>Starting at $34.99</h4>
-        <section className="cakebites">
+        <h2 className="greeting2">
+          <u>Shop Cakebites!</u>
+        </h2>
+        <p><u>Starting at $34.99</u></p>
+        <br />
+        <tbody>
+        <section className="outerdiv">
           {cakeBites.map((singleCakeBite) => (
-            <div key={singleCakeBite.id}>
-              <h3>{singleCakeBite.flavor}</h3>
+            <div  key={singleCakeBite.id}>
+              <h3 className="greeting2">{singleCakeBite.flavor}</h3>
               <img
                 className="cakebiteImage"
                 onClick={() => handleOpenModal(singleCakeBite)}
@@ -43,6 +47,7 @@ function ShopCakeBites() {
             </div>
           ))}
         </section>
+        </tbody>
       </figure>
 
       <Modal
