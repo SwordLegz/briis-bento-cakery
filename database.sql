@@ -3,11 +3,6 @@
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
 
--- CREATE TABLE "user" (
---     "id" SERIAL PRIMARY KEY,
---     "username" VARCHAR (80) UNIQUE NOT NULL,
---     "password" VARCHAR (1000) NOT NULL
--- );
 
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
@@ -40,6 +35,7 @@ INSERT INTO "cakebites"
 	('Mint Chocolate', 'images/choco-mint.jpg', 'blah bleep bloop')
 ;
 
+
 CREATE TABLE "orders" (
 	"id" SERIAL PRIMARY KEY,
 	"user_id" INTEGER REFERENCES "user" ON DELETE CASCADE,
@@ -54,16 +50,46 @@ INSERT INTO "orders"
 	('2', '09/02/24', 'TRUE'),
 	('1', '09/04/24', 'FALSE')
 ;
-	
+
+CREATE TABLE "pending_cart" (
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INTEGER REFERENCES "user" ON DELETE CASCADE,
+	"flavor_id" INTEGER REFERENCES "cakebites" ON DELETE CASCADE,
+	"flavor" VARCHAR(50),
+	"image" VARCHAR(1000),
+	"is_egg_free" BOOLEAN DEFAULT FALSE,
+	"is_dairy_free" BOOLEAN DEFAULT FALSE,
+	"is_gluten_free" BOOLEAN DEFAULT FALSE,
+	"is_vegan" BOOLEAN DEFAULT FALSE,
+	"quantity" INTEGER NOT NULL,
+	"price" REAL
+);	
+
+INSERT INTO "pending_cart"
+	("user_id", "flavor_id", "is_egg_free", "is_dairy_free", "is_gluten_free", "is_vegan", "quantity")
+	VALUES ('1', '1', 'FALSE', 'FALSE', 'FALSE', 'FALSE', '25'),
+	('1', '3', 'FALSE', 'FALSE', 'FALSE', 'FALSE', '50'),
+	('1', '6', 'FALSE', 'FALSE', 'FALSE', 'FALSE', '25'),
+	('2', '2', 'TRUE', 'TRUE', 'FALSE', 'FALSE', '50'),
+	('2', '4', 'TRUE', 'TRUE', 'TRUE', 'FALSE', '25'),
+	('3', '1', 'FALSE', 'FALSE', 'FALSE', 'FALSE', '25'),
+	('3', '5', 'FALSE', 'FALSE', 'FALSE', 'FALSE', '75'),
+	('3', '6', 'FALSE', 'FALSE', 'TRUE', 'FALSE', '25'),
+	('3', '2', 'FALSE', 'FALSE', 'TRUE', 'FALSE', '25'),
+	('3', '4', 'FALSE', 'TRUE', 'FALSE', 'FALSE', '100'),
+	('3', '6', 'TRUE', 'TRUE', 'TRUE', 'TRUE', '25'),
+	('4', '4', 'FALSE', 'FALSE', 'FALSE', 'FALSE','50'),
+	('4', '5', 'FALSE', 'TRUE', 'FALSE', 'FALSE', '25');
 
 CREATE TABLE "order_items" (
 	"id" SERIAL PRIMARY KEY,
 	"order_id" INTEGER REFERENCES "orders" ON DELETE CASCADE,
 	"flavor_id" INTEGER REFERENCES "cakebites" ON DELETE CASCADE,
-	"is_egg_free" BOOLEAN NOT NULL,
-	"is_dairy_free" BOOLEAN NOT NULL,
-	"is_gluten_free" BOOLEAN NOT NULL,
-	"is_vegan" BOOLEAN NOT NULL,
+	"flavor" INTEGER REFERENCES "cakebites" ON DELETE CASCADE,
+	"is_egg_free" BOOLEAN DEFAULT FALSE,
+	"is_dairy_free" BOOLEAN DEFAULT FALSE,
+	"is_gluten_free" BOOLEAN DEFAULT FALSE,
+	"is_vegan" BOOLEAN DEFAULT FALSE,
 	"quantity" INTEGER NOT NULL
 );
 
@@ -82,6 +108,9 @@ INSERT INTO "order_items"
 	('3', '6', 'TRUE', 'TRUE', 'TRUE', 'TRUE', '25'),
 	('4', '4', 'FALSE', 'FALSE', 'FALSE', 'FALSE','50'),
 	('4', '5', 'FALSE', 'TRUE', 'FALSE', 'FALSE', '25');
+
+
+
 
 
 

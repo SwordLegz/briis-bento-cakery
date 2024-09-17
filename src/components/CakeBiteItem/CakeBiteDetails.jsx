@@ -9,18 +9,13 @@ import Swal from "sweetalert2";
 function CakeBiteDetails({ cakeBite, onClose}) {
     const history = useHistory();
     const dispatch = useDispatch();
-    // 1. useSelector to get the shopReducer data
-    // const shopReducer = useSelector(store => store.shopReducer)
     const user = useSelector(store => store.user)
-    // let { id } = useParams();
-    // let cakeBiteId = Number(id);
     const [selectedQuantity, setSelectedQuantity] = useState(25);
     const [adjustedPrice, setAdjustedPrice] = useState(34.99);
 
-
     // --------- FIND THE CAKEBITE ITEM BASED ON THE ID ---------//
     // let cakeBiteItem = shopReducer.find(item => item.id === cakeBiteId) || {};
-    
+
 
     // ---------- PRICE ADJUSTOR BASED ON QUANTITY SELECTED ---------- //
     useEffect(() => {
@@ -84,13 +79,6 @@ function CakeBiteDetails({ cakeBite, onClose}) {
     const goToCartButton = () => {
         history.push('/cart');
     }
-    // ---------- END BACK TO SHOP BUTTON ---------- //
-
-
-    // ---------- NEW BACK TO SHOP BUTTON ---------- //
-    // const backToShopButton = () => {
-    //     history.push('/shop');
-    // }
     // ---------- END BACK TO SHOP BUTTON ---------- //
 
 

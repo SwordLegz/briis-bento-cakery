@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
         pending,
         cartItems
     } = req.body;
-    console.log('CART items in orderReducer:', cartItems);
 
     const client = await pool.connect();
     

@@ -87,21 +87,6 @@ router.put('/pending/:id', async (req, res) => {
         console.log('YIKIEZZZ error with edit in cart.router:', error);
         res.sendStatus(500);
     }
-    // try {
-    //     const result = await pool.query(`
-    //         UPDATE "pending_cart"
-    //         SET "quantity" = $1
-    //         WHERE "id" = $2;
-    //         `, [quantity, id]);
-
-    //     if (result.rowCount === 0) {
-    //         return res.status(404).json({ message: 'Sowwy, no edit' });
-    //     }
-    //     res.sendStatus(200);
-    // } catch (error) {
-    //     console.log('No can doozies for edit in cart.router:', error);
-    //     res.sendStatus(500);
-    // }
 });
 
 module.exports = router;

@@ -1,11 +1,6 @@
 import React from 'react';
 import './AboutPage.css';
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
-
 function AboutPage() {
   return (
     <div className="container">
@@ -14,7 +9,10 @@ function AboutPage() {
         <div>
           <h2 className="greeting">
             <u>Who is Brii's Bento Cakery:</u>
+            
           </h2>
+          <br />
+          <br />
           <img className="brii-kid" src="./images/brii-kid.jpg" />
           <img className="brii-adult" src="./images/brii-adult.jpeg" />
         </div>

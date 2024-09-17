@@ -13,7 +13,6 @@
   }
 
   .greeting2 {
-    /* text-align: center; */
       font-size: xx-large;
       font-family: "Playwrite ES", cursive;
       font-optical-sizing: auto;
@@ -28,9 +27,3 @@
     flex-wrap: wrap;
     width: 100%;
   }
-  
-/* 
-  .outerdiv {
-    display: flex;
-    flex-wrap: wrap;
-  } */

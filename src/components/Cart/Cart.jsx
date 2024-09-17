@@ -82,7 +82,6 @@ function Cart() {
     const handleSave = async () => {
         if (editItem) {
         const updatedItem = { ...editItem, quantity: selectedQuantity, price: adjustedPrice };
-        console.log('Saving item:', updatedItem);
         
             dispatch({
                 type: 'EDIT_ITEM_REQUEST',

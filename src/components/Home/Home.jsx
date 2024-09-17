@@ -1,13 +1,11 @@
 import React from 'react';
 import { useSelector} from 'react-redux';
 import { useState } from 'react';
-// import Modal from '../Modal/Modal';
 import './Home.css';
 
 function Home() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  // const [openModal, setOpenModal] = useState(false);
 
   return (
     <div className="container">

@@ -21,7 +21,6 @@ function* fetchCartItems() {
 function* handleCart(action) {
     console.log('hi')
     try {
-        // const cakebiteInCart = action.payload[0];
         yield axios.post('/api/cart', action.payload);
         const pendingCartItems = yield axios.get('/api/cart/pending')
         yield put({

@@ -9,21 +9,11 @@ import { useSelector } from "react-redux";
 
 function Header() {
   const user = useSelector((store) => store.user);
-  // const dispatch = useDispatch();
-  // const history = useHistory();
 
-  // const goToCart = () => {
-  //     history.push('/cart');
-  //     dispatch({
-  //         type: 'GO_TO_CART',
-  //         payload: {}
-  //     });
-  // }
 
   return (
     <div>
       <div>
-        {/* <img className="home-img" src="./images/octopus.jpeg"></img> */}
         <header className="header">
           Brii's Bento Cakery
           <div className="button">
@@ -42,8 +32,6 @@ function Header() {
               </Link>
             )}
           </div>
-          {/* <button className="btn"
-                            onClick={goToCart}>Cart</button> */}
         </header>
       </div>
     </div>
