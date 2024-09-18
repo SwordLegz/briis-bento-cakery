@@ -19,8 +19,7 @@ function Events() {
                         <div className="column">
                             Baby Showers
                             <img  className="baby-img"src="./images/baby-shower.jpeg"/>
-                        </div>
-                    
+                        </div>      
             </div>
         </div>    
     );

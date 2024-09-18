@@ -10,11 +10,6 @@ body {
   background-color: #c399fa;
 }
 
-/* img {
-  display: inline-block;
-  max-width: 100%;
-} */
-
 .header {
   display: flex;
   margin: 0 0 30px;
@@ -54,8 +49,6 @@ Button
   cursor: pointer;
 
 }
-
-
 
 .btn_sizeMin {
   min-height: 50px;

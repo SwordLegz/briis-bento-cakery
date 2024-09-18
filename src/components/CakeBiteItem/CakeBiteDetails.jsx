@@ -34,7 +34,6 @@ function CakeBiteDetails({ cakeBite, onClose}) {
     }, [selectedQuantity]);
 
     const handleChange = (event) => {
-        // setSelectedQuantity(event.target.value);
         const newQuantity = Number(event.target.value);
         setSelectedQuantity(newQuantity);
     }
@@ -161,25 +160,7 @@ function CakeBiteDetails({ cakeBite, onClose}) {
                         <h2 className="price">Price: ${adjustedPrice.toFixed(2)}</h2>
                     </td>
                 </tbody>
-                {/* <button className="modal-btn"
-                        onClick={backToShopButton}>
-                            Go to Shop
-                </button>  */}
             </figure>
-            
-            {/* <figure>
-                <button className="btn"
-                        onClick={backToShopButton}>
-                            Back to Shop
-                </button>
-            <figure />
-                <button className="btn"
-                        onClick={goToCartButton}>
-                            Go To Cart
-                </button>
-            </figure> */}
-            
-            
         </div>
         </>
     );

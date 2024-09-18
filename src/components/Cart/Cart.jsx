@@ -118,7 +118,6 @@ function Cart() {
                 payload: cakebiteId
             });
               Swal.fire({
-                // title: "Obliterated!!",
                 text: "Your item has been removed from your cart!",
                 icon: "success"
               });
@@ -164,7 +163,6 @@ function Cart() {
                     imageUrl: "../images/octopus.jpeg",
                     imageWidth: 400,
                     imageHeight: 400,
-                    // imageAlt: "Custom image"
                   });
                   history.push('/');
             }
@@ -217,7 +215,6 @@ function Cart() {
                                         <h4>Price:</h4> ${parseFloat(cakebite.price).toFixed(2)}
                                     </td>
                                     <td>
-                                        
                                     {editItem && editItem.id === cakebite.id ? (
                                         <div>
                                             <h3>Edit Quantity:</h3>
@@ -259,7 +256,6 @@ function Cart() {
                                                 />
                                                 <label htmlFor="quantity100">100</label><br />
                                             </div>
-                                            
                                             <h4>Adjusted Price: ${adjustedPrice.toFixed(2)}</h4>
                                             <button className="btn" onClick={handleSave}>Save Changes</button>
                                             <button className="btn" onClick={handleCancel}>Cancel</button>
@@ -274,8 +270,7 @@ function Cart() {
                                 </tr>
                             )) : <tr><td colSpan="3">No items in the cart.</td></tr>}
                         </tbody>
-            </table>
-
+                </table>
             </div>
             </figure>
             <br />
@@ -286,9 +281,6 @@ function Cart() {
                 </button>
             </div>
             </figure>
-
-            
-
         </div>
     )
 }

@@ -32,8 +32,3 @@ const cartReducer = (state = [], action) => {
 // -------- END DELETE CAKEBITE IN CART -------- //
 
 export default cartReducer;
-
-
-
-
-// ------------ OLD CODE MIGHT WORK?? ------------ //

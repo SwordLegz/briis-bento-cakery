@@ -32,7 +32,6 @@ app.use('/api/shop', shopRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/cart', cartRouter)
 
-// app.use('/api/order', orderRouter);
 
 
 // --------- START Server & Port --------- //

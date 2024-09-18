@@ -11,7 +11,6 @@
 .bday-img {
     box-sizing: border-box;
     object-fit: cover;
-    /* object-position: -10% 10; */
     width: 335px;
     height: 280px;
     border-radius: 20px;
@@ -20,13 +19,11 @@
     box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
     background-color: #c399fa;
     padding: 7px;
-    /* transform: rotate(-15deg); */
 }
 
 .wedding-img {
     box-sizing: border-box;
     object-fit: cover;
-    /* object-position: -10% 10; */
     width: 335px;
     height: 280px;
     border-radius: 20px;
@@ -35,13 +32,11 @@
     box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
     background-color: #c399fa;
     padding: 7px;
-    /* transform: rotate(-15deg); */
 }
 
 .baby-img {
     box-sizing: border-box;
     object-fit: cover;
-    /* object-position: -10% 10; */
     width: 335px;
     height: auto;
     border-radius: 20px;
@@ -50,6 +45,5 @@
     box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.5);
     background-color: #c399fa;
     padding: 7px;
-    /* transform: rotate(-15deg); */
 }
 
