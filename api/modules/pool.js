@@ -24,12 +24,12 @@ if (process.env.POSTGRES_URL) {
 // When we're running this app on our own computer
 // we'll connect to the postgres database that is 
 // also running on our computer (localhost)
-else {
-    pool = new pg.Pool({
-        host: 'localhost',
-        port: 5432,
-        database: 'briis_bento_cakery',   // 	💥 Change this to the name of your database!
-    });
-}
+// else {
+//     pool = new pg.Pool({
+//         host: 'localhost',
+//         port: 5432,
+//         database: 'briis_bento_cakery',   // 	💥 Change this to the name of your database!
+//     });
+// }
 
 module.exports = pool;
